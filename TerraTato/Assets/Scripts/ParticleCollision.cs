@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ParticleCollision : MonoBehaviour
 {
+    // Default
     private ParticleSystem part;
     public List<ParticleCollisionEvent> collisionEvents;
     public GameObject explosionPrefab;
+
+    // Floating Text
+    public GameObject FloatingText;
+    public GameObject Canvas;
 
     void Start()
     {
@@ -16,6 +21,14 @@ public class ParticleCollision : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
+        // Create damage text
+        float RandomFloat = 1;
+        Vector3 RandomFloatingTextPosition = other.transform.position + new Vector3(Random.Range(-RandomFloat, RandomFloat), Random.Range(-RandomFloat, RandomFloat), 0);
+
+        GameObject InsFloatingText = Instantiate(FloatingText, RandomFloatingTextPosition, Quaternion.identity);
+        InsFloatingText.transform.parent = Canvas.transform;
+
+        // Play hit sound
         SoundManager.sndman.PlayHurtSounds();
 
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
