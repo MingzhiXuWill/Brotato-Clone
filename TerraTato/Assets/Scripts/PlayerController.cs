@@ -44,9 +44,6 @@ public class PlayerController : MonoBehaviour
         transform.position += new Vector3(x * MovingSpeed * Time.deltaTime, y * MovingSpeed * Time.deltaTime, 0);
 
         // Gun
-        //float DisX = Gun.transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-        //float DisY = Gun.transform.position.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-
         if (CurrentTarget != null) {
             float DisX = Gun.transform.position.x - CurrentTarget.transform.position.x;
             float DisY = Gun.transform.position.y - CurrentTarget.transform.position.y;
