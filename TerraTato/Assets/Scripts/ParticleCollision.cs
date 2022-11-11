@@ -22,21 +22,29 @@ public class ParticleCollision : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         // Create damage text
-        float RandomFloat = 1;
-        Vector3 RandomFloatingTextPosition = other.transform.position + new Vector3(Random.Range(-RandomFloat, RandomFloat), Random.Range(-RandomFloat, RandomFloat), 0);
+        float RandomFloatX = 0.5f;
+        float RandomFloatY = 1f;
+
+        GameObject FloatingTextMark = other.transform.GetChild(1).gameObject;
+
+        Vector3 RandomFloatingTextPosition = FloatingTextMark.transform.position + new Vector3(Random.Range(-RandomFloatX, RandomFloatX), Random.Range(-RandomFloatY, RandomFloatY), 0);
 
         GameObject InsFloatingText = Instantiate(FloatingText, RandomFloatingTextPosition, Quaternion.identity);
+
+        InsFloatingText.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, Random.Range(-5f, 5f)));
         InsFloatingText.transform.parent = Canvas.transform;
+
+
 
         // Play hit sound
         SoundManager.sndman.PlayHurtSounds();
 
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
 
-        GameObject explosion = Instantiate(explosionPrefab, collisionEvents[0].intersection, Quaternion.identity);
+        //GameObject explosion = Instantiate(explosionPrefab, collisionEvents[0].intersection, Quaternion.identity);
 
-        ParticleSystem p = explosion.GetComponent<ParticleSystem>();
-        var pmain = p.main;
+        //ParticleSystem p = explosion.GetComponent<ParticleSystem>();
+        //var pmain = p.main;
 
         if (other.GetComponent<Rigidbody2D>() != null)
         {

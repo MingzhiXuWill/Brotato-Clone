@@ -12,18 +12,38 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip HurtSounds;
 
+    public float PitchFix;
+
+    public float DefaultVolume;
+
     void Start()
     {
         sndman = this;
         audioSource = GetComponent<AudioSource>();
+        ResetVolume();
+    }
+
+    private void Update()
+    {
+        audioSource.pitch = Random.Range(1f - PitchFix, 1f + PitchFix);
+    }
+
+    public void ResetVolume() {
+        audioSource.volume = DefaultVolume;
+    }
+
+    public void SetVolume(float volume) {
+        audioSource.volume = volume;
     }
 
     public void PlayFireSounds()
     {
+        //SetVolume(0.1f);
         audioSource.PlayOneShot(FireSounds);
+        //ResetVolume();
     }
 
-    public void PlayHurtSounds()
+    public void PlayHurtSounds() 
     {
         audioSource.PlayOneShot(HurtSounds);
     }

@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
         if (CurrentTarget != null) {
             float DisX = Gun.transform.position.x - CurrentTarget.transform.position.x;
             float DisY = Gun.transform.position.y - CurrentTarget.transform.position.y;
-            Debug.Log(Mathf.Atan2(CurrentTarget.transform.position.y, CurrentTarget.transform.position.x) * Mathf.Rad2Deg);
             Gun.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(-DisY, -DisX) * Mathf.Rad2Deg));
 
             if (CanFire)
