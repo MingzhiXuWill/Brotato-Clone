@@ -12,6 +12,8 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip HurtSounds;
 
+    public AudioClip KilledSounds;
+
     public float PitchFix;
 
     public float DefaultVolume;
@@ -46,5 +48,10 @@ public class SoundManager : MonoBehaviour
     public void PlayHurtSounds() 
     {
         audioSource.PlayOneShot(HurtSounds);
+    }
+
+    public void PlayKilledSounds()
+    {
+        audioSource.PlayOneShot(KilledSounds);
     }
 }

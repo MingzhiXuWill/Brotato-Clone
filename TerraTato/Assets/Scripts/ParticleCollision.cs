@@ -13,6 +13,9 @@ public class ParticleCollision : MonoBehaviour
     public GameObject FloatingText;
     public GameObject Canvas;
 
+    // Gun Stats
+    public int Damage;
+
     void Start()
     {
         part = GetComponent<ParticleSystem>();
@@ -21,23 +24,19 @@ public class ParticleCollision : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        // Create damage text
-        float RandomFloatX = 0.5f;
-        float RandomFloatY = 1f;
+        
+        if (other.tag == "Enemy") {
+            // Create damage text
+            FloatingTextManager.ftman.CreateText(other, Damage);
 
-        GameObject FloatingTextMark = other.transform.GetChild(1).gameObject;
+            // Play hit sound
+            SoundManager.sndman.PlayHurtSounds();
+        }
 
-        Vector3 RandomFloatingTextPosition = FloatingTextMark.transform.position + new Vector3(Random.Range(-RandomFloatX, RandomFloatX), Random.Range(-RandomFloatY, RandomFloatY), 0);
+        Enemy Enemy = other.GetComponent<Enemy>();
 
-        GameObject InsFloatingText = Instantiate(FloatingText, RandomFloatingTextPosition, Quaternion.identity);
+        Enemy.CurrentHealth -= Damage;
 
-        InsFloatingText.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, Random.Range(-5f, 5f)));
-        InsFloatingText.transform.parent = Canvas.transform;
-
-
-
-        // Play hit sound
-        SoundManager.sndman.PlayHurtSounds();
 
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
 

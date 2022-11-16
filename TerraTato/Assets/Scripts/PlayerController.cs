@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Player movement speed
-    public float MovingSpeed;
+    public float MoveSpeed;
 
     // A testing gun
     public ParticleSystem Gun;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        transform.position += new Vector3(x * MovingSpeed * Time.deltaTime, y * MovingSpeed * Time.deltaTime, 0);
+        transform.position += new Vector3(x * MoveSpeed * Time.deltaTime, y * MoveSpeed * Time.deltaTime, 0);
 
         // Gun
         //float DisX = Gun.transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
