@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     // Player movement speed
     public float MoveSpeed;
 
-    // A testing gun
+    // A test gun
     public ParticleSystem Gun;
 
     public float FireTimeMax;
@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         CurrentTarget = FindClosestEnemy();
 
+        Debug.Log(CurrentTarget);
+
         if (FireTimeCount <= FireTimeMax && !CanFire) {
             FireTimeCount += Time.deltaTime;
         }
@@ -48,8 +50,11 @@ public class PlayerController : MonoBehaviour
         //float DisY = Gun.transform.position.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
 
         if (CurrentTarget != null) {
-            float DisX = Gun.transform.position.x - CurrentTarget.transform.position.x;
-            float DisY = Gun.transform.position.y - CurrentTarget.transform.position.y;
+
+            GameObject TargetMark = CurrentTarget.GetComponent<Enemy>().TargetMark;
+
+            float DisX = Gun.transform.position.x - TargetMark.transform.position.x;
+            float DisY = Gun.transform.position.y - TargetMark.transform.position.y;
             Gun.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(-DisY, -DisX) * Mathf.Rad2Deg));
 
             if (CanFire)

@@ -7,7 +7,8 @@ public class ParticleCollision : MonoBehaviour
     // Default
     private ParticleSystem part;
     public List<ParticleCollisionEvent> collisionEvents;
-    public GameObject explosionPrefab;
+
+    public Transform Player;
 
     // Floating Text
     public GameObject FloatingText;
@@ -20,11 +21,12 @@ public class ParticleCollision : MonoBehaviour
     {
         part = GetComponent<ParticleSystem>();
         collisionEvents = new List<ParticleCollisionEvent>();
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void OnParticleCollision(GameObject other)
     {
-        
+        // Hit a enemy
         if (other.tag == "Enemy") {
             // Create damage text
             FloatingTextManager.ftman.CreateText(other, Damage);
@@ -37,17 +39,11 @@ public class ParticleCollision : MonoBehaviour
 
         Enemy.CurrentHealth -= Damage;
 
-
-        int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
-
-        //GameObject explosion = Instantiate(explosionPrefab, collisionEvents[0].intersection, Quaternion.identity);
-
-        //ParticleSystem p = explosion.GetComponent<ParticleSystem>();
-        //var pmain = p.main;
-
-        if (other.GetComponent<Rigidbody2D>() != null)
+        // Apply push back force
+        Rigidbody2D RB = other.GetComponent<Rigidbody2D>();
+        if (RB != null)
         {
-            other.GetComponent<Rigidbody2D>().AddForceAtPosition(collisionEvents[0].intersection * 10 - transform.position, collisionEvents[0].intersection + Vector3.up);
+            RB.AddForce(Player.position - transform.position);
         }
     }
 }

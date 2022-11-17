@@ -814,10 +814,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.16302085
-    y: 0.18148148
-    width: 1
-    height: 1
+    x: 1.2030075
+    y: -0.44280443
+    width: 0.962406
+    height: 0.99631
   near clip plane: 0.1
   far clip plane: 1000
   field of view: 40
@@ -5853,7 +5853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ecb7e533ad58245a17675de002d448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 0}
+  Player: {fileID: 0}
   FloatingText: {fileID: 7516691520514642193, guid: c685d9c58eb45bc4087ab5a6d09a0c36, type: 3}
   Canvas: {fileID: 2125500824}
   Damage: 3
@@ -6157,7 +6157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1621801400}
   - component: {fileID: 1621801399}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P90 Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6204,7 +6204,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 28
+  m_SortingOrder: 60
   m_Sprite: {fileID: 21300000, guid: ba24d92e06cf4c049815070de9ffcfa2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6262,7 +6262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e4d0a34ecb1be4684564db029d5669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 15
+  MoveSpeed: 10
   Gun: {fileID: 941804816}
   FireTimeMax: 0.1
   FireTimeCount: 0
@@ -6306,7 +6306,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: a39989f9a9dcad94089da1f3b74af946, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
