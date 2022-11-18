@@ -4,64 +4,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Weapon, Target
+    public GameObject WeaponSlot1;
+    public GameObject WeaponSlot2;
+    public GameObject WeaponSlot3;
+    public GameObject WeaponSlot4;
+
+    [HideInInspector]
+    public GameObject CurrentTarget;
+
     // Player movement speed
     public float MoveSpeed;
 
-    // A test gun
-    public ParticleSystem Gun;
-
-    public float FireTimeMax;
-
-    public float FireTimeCount;
-
-    bool CanFire;
-
-    // Target
-    GameObject CurrentTarget;
-
     private void Start()
     {
-        FireTimeCount = 0;
-        CanFire = false;
+
     }
 
     void Update()
     {
-        CurrentTarget = FindClosestEnemy();
-
-        if (FireTimeCount <= FireTimeMax && !CanFire) {
-            FireTimeCount += Time.deltaTime;
-        }
-        else if(FireTimeCount > FireTimeMax){
-            CanFire = true;
-            FireTimeCount = 0;
-        }
-
         // Move
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
         transform.position += new Vector3(x * MoveSpeed * Time.deltaTime, y * MoveSpeed * Time.deltaTime, 0);
 
-        // Gun
-        //float DisX = Gun.transform.position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-        //float DisY = Gun.transform.position.y - Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-
-        if (CurrentTarget != null) {
-
-            GameObject TargetMark = CurrentTarget.GetComponent<Enemy>().TargetMark;
-
-            float DisX = Gun.transform.position.x - TargetMark.transform.position.x;
-            float DisY = Gun.transform.position.y - TargetMark.transform.position.y;
-            Gun.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(-DisY, -DisX) * Mathf.Rad2Deg));
-
-            if (CanFire)
-            {
-                Gun.Emit(1);
-                CanFire = false;
-                SoundManager.sndman.PlayFireSounds();
-            }
-        }
+        // FindEnemy
+        CurrentTarget = FindClosestEnemy();
     }
 
     public GameObject FindClosestEnemy()

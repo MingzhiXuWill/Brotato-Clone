@@ -4,30 +4,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Player Location
+    // Player, Text, RB
     [HideInInspector]
     public Transform Player;
 
     public GameObject TargetMark;
     public GameObject FloatingTextMark;
 
-    // Speed
+    Rigidbody2D Rigidbody;
+
+    // Enemy Stats
     public float MoveSpeed;
 
-    // Health
     public float MaxHealth;
     [HideInInspector]
     public float CurrentHealth;
 
-    // Self Rigidbody
-    Rigidbody2D Rigidbody;
-
-    // The min distance when start charging
-    float MinDistance = 2;
+    public float MinDistance;
 
     // Knock back
-    float KnockBackDuration = 0;
-    Vector2 KnockBackDirection;
+    float StoppingPowerTime = 0;
 
     void Start()
     {
@@ -54,21 +50,27 @@ public class Enemy : MonoBehaviour
 
     private void Movement()
     {
-        if (KnockBackDuration >= 0) {
-            KnockBackDuration -= Time.deltaTime;
-
-            Rigidbody.AddForce(KnockBackDirection);
-        }
-        else if (Vector3.Distance(Player.position, transform.position) >= MinDistance)
+        //Chase player
+        if (Vector3.Distance(Player.position, transform.position) >= MinDistance)
         {
             Vector3 direction = (Player.position - transform.position).normalized;
-            Rigidbody.velocity = direction * MoveSpeed;
+
+            // Apply Stopping Power
+            if (StoppingPowerTime >= 0)
+            {
+                StoppingPowerTime -= Time.deltaTime;
+                Rigidbody.velocity = direction * MoveSpeed / 3;
+            }
+            else{
+                Rigidbody.velocity = direction * MoveSpeed;
+            }       
         }
     }
 
-    public void SetKnockBack(Vector2 direction, float duration)
+    public void SetStoppingPower(float duration)
     {
-        KnockBackDirection = direction;
-        KnockBackDuration = duration;
+        if (StoppingPowerTime < duration) {
+            StoppingPowerTime = duration;
+        }
     }
 }
