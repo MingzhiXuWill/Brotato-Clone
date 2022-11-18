@@ -15,12 +15,10 @@ public class FloatingTextManager : MonoBehaviour
         ftman = this;
     }
 
-    public void CreateText(GameObject EnemyOBJ, int Damage)
+    public void CreateText(GameObject FloatingTextMark, int Damage)
     {
         float RandomFloatX = 0.5f;
         float RandomFloatY = 1f;
-
-        GameObject FloatingTextMark = EnemyOBJ.GetComponent<Enemy>().FloatingTextMark; // Get text mark
 
         Vector3 RandomFloatingTextPosition = FloatingTextMark.transform.position + new Vector3(Random.Range(-RandomFloatX, RandomFloatX), Random.Range(-RandomFloatY, RandomFloatY), 0);
 

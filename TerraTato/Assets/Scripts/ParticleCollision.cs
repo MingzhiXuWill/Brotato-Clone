@@ -9,12 +9,8 @@ public class ParticleCollision : MonoBehaviour
     public ParticleSystem ParticleSystem;
     [HideInInspector]
     public Transform Player;
-
+    [HideInInspector]
     public GameObject CurrentTarget;
-
-    // Floating Text
-    public GameObject FloatingText;
-    public GameObject Canvas;
 
     // Gun Stats
     public string Name;
@@ -30,6 +26,9 @@ public class ParticleCollision : MonoBehaviour
     [HideInInspector]
     public float UseTimeCounter;
 
+    // Sound
+    public AudioClip FireSound;
+
     void Start()
     {
         ParticleSystem = GetComponent<ParticleSystem>();
@@ -41,20 +40,15 @@ public class ParticleCollision : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        if (other.tag == "Enemy") {
-            // Create damage text
-            FloatingTextManager.ftman.CreateText(other, (int)Damage);
+        if (other.tag == "Enemy")
+        {
+            Enemy Enemy = other.GetComponent<Enemy>();
 
-            // Play hit sound
-            SoundManager.sndman.PlayHurtSounds();
+            Enemy.TakeDamage(Damage);
+
+            // Apply push back force
+            Enemy.SetStoppingPower(StoppingPowerTime);
         }
-
-        Enemy Enemy = other.GetComponent<Enemy>();
-
-        Enemy.CurrentHealth -= Damage;
-
-        // Apply push back force
-        ApplyStoppingPower();
     }
 
     private void Update()
@@ -77,7 +71,7 @@ public class ParticleCollision : MonoBehaviour
                 {
                     Fire();
                     CanFire = false;
-                    SoundManager.sndman.PlayFireSounds();
+                    SoundManager.sndman.PlaySound(FireSound, 1f);
                 }
             }
         }
@@ -87,7 +81,8 @@ public class ParticleCollision : MonoBehaviour
         ParticleSystem.Emit((int)BulletsNumber);
     }
 
-    public void UpdateUseTime() {
+    public void UpdateUseTime()
+    {
         if (UseTimeCounter <= UseTime && !CanFire)
         {
             UseTimeCounter += Time.deltaTime;
@@ -97,9 +92,5 @@ public class ParticleCollision : MonoBehaviour
             CanFire = true;
             UseTimeCounter = 0;
         }
-    }
-
-    public void ApplyStoppingPower() {
-        CurrentTarget.GetComponent<Enemy>().SetStoppingPower(StoppingPowerTime);
     }
 }

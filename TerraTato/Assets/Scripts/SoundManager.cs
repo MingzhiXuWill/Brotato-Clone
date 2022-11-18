@@ -8,12 +8,6 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource audioSource;
 
-    public AudioClip FireSounds;
-
-    public AudioClip HurtSounds;
-
-    public AudioClip KilledSounds;
-
     public float PitchFix;
 
     public float DefaultVolume;
@@ -38,20 +32,10 @@ public class SoundManager : MonoBehaviour
         audioSource.volume = volume;
     }
 
-    public void PlayFireSounds()
+    public void PlaySound(AudioClip Sound, float Volume)
     {
-        //SetVolume(0.1f);
-        audioSource.PlayOneShot(FireSounds);
+        //SetVolume(Volume);
+        audioSource.PlayOneShot(Sound);
         //ResetVolume();
-    }
-
-    public void PlayHurtSounds() 
-    {
-        audioSource.PlayOneShot(HurtSounds);
-    }
-
-    public void PlayKilledSounds()
-    {
-        audioSource.PlayOneShot(KilledSounds);
     }
 }

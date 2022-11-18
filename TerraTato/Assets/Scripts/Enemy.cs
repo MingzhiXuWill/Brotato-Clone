@@ -25,6 +25,10 @@ public class Enemy : MonoBehaviour
     // Knock back
     float StoppingPowerTime = 0;
 
+    // Sound
+    public AudioClip HurtSound;
+    public AudioClip KilledSound;
+
     void Start()
     {
         CurrentHealth = MaxHealth;
@@ -41,11 +45,26 @@ public class Enemy : MonoBehaviour
         CheckDeath();
     }
 
-    private void CheckDeath() {
-        if (CurrentHealth <= 0) {
-            SoundManager.sndman.PlayKilledSounds();
+    private void CheckDeath()
+    {
+        if (CurrentHealth <= 0)
+        {
+            SoundManager.sndman.PlaySound(KilledSound, 1f);
+
             Destroy(gameObject);
         }
+    }
+
+    public void TakeDamage(float Damage)
+    {
+        // Create damage text
+
+        FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage);
+
+        // Play hit sound
+        SoundManager.sndman.PlaySound(HurtSound, 1f);
+
+        CurrentHealth -= Damage;
     }
 
     private void Movement()
