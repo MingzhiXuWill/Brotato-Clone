@@ -29,8 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         CurrentTarget = FindClosestEnemy();
 
-        Debug.Log(CurrentTarget);
-
         if (FireTimeCount <= FireTimeMax && !CanFire) {
             FireTimeCount += Time.deltaTime;
         }

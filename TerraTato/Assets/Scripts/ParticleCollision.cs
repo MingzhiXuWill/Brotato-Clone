@@ -40,10 +40,7 @@ public class ParticleCollision : MonoBehaviour
         Enemy.CurrentHealth -= Damage;
 
         // Apply push back force
-        Rigidbody2D RB = other.GetComponent<Rigidbody2D>();
-        if (RB != null)
-        {
-            RB.AddForce(Player.position - transform.position);
-        }
+        //Vector2 direction = (other.transform.position - Player.position).normalized;
+        //other.GetComponent<Enemy>().SetKnockBack(direction, 0.1f);
     }
 }
