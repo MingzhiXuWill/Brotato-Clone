@@ -46,8 +46,13 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   alignment: 9
   spritePivot: {x: 0.5, y: 0}
+=======
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0.5}
+>>>>>>> main
 =======
   alignment: 7
   spritePivot: {x: 0.5, y: 0.5}
@@ -125,7 +130,11 @@ TextureImporter:
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
 <<<<<<< HEAD
+<<<<<<< HEAD
     internalID: 1537655665
+=======
+    internalID: 0
+>>>>>>> main
 =======
     internalID: 0
 >>>>>>> main
