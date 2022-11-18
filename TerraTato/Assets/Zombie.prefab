@@ -128,7 +128,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  MoveSpeed: 10
+  TargetMark: {fileID: 5395848048548499433}
+  FloatingTextMark: {fileID: 6977544372343358219}
+  MoveSpeed: 8
   MaxHealth: 65
   CurrentHealth: 0
 --- !u!50 &-6335177383701489862
@@ -163,7 +165,7 @@ GameObject:
   - component: {fileID: 4638107711411939919}
   m_Layer: 6
   m_Name: TargetMark
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

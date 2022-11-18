@@ -20,7 +20,7 @@ public class FloatingTextManager : MonoBehaviour
         float RandomFloatX = 0.5f;
         float RandomFloatY = 1f;
 
-        GameObject FloatingTextMark = EnemyOBJ.transform.GetChild(0).gameObject; // Get text mark
+        GameObject FloatingTextMark = EnemyOBJ.GetComponent<Enemy>().FloatingTextMark; // Get text mark
 
         Vector3 RandomFloatingTextPosition = FloatingTextMark.transform.position + new Vector3(Random.Range(-RandomFloatX, RandomFloatX), Random.Range(-RandomFloatY, RandomFloatY), 0);
 
