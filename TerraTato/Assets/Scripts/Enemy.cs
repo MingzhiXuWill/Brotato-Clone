@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
 
     Rigidbody2D Rigidbody;
 
+    public EnemyHealthBar HealthBar;
+
     // Enemy Stats
     public float MoveSpeed;
 
@@ -37,12 +39,19 @@ public class Enemy : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player").transform;
 
         Physics2D.IgnoreCollision(Player.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
+
+        SetHealthBar();
+    }
+
+    public void SetHealthBar() {
+        HealthBar.SetHealth(CurrentHealth, MaxHealth);
     }
 
     private void Update()
     {
         Movement();
         CheckDeath();
+        SetHealthBar();
     }
 
     private void CheckDeath()
