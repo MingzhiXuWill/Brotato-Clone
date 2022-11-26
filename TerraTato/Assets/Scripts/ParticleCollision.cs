@@ -17,9 +17,12 @@ public class ParticleCollision : MonoBehaviour
     public string TooltipText;
     public float Damage;
     public float UseTime;
-    public float StoppingPowerTime;
-    public float BulletsNumber;
+    public float SlowTime;
+    public int BulletsNumber;
     public float Range;
+
+    [HideInInspector]
+    public float BulletScatter;
 
     [HideInInspector]
     public bool CanFire;
@@ -29,6 +32,9 @@ public class ParticleCollision : MonoBehaviour
     // Sound
     public AudioClip FireSound;
 
+    // Sprite
+    public GameObject Sprite;
+
     void Start()
     {
         ParticleSystem = GetComponent<ParticleSystem>();
@@ -36,6 +42,8 @@ public class ParticleCollision : MonoBehaviour
 
         UseTimeCounter = 0;
         CanFire = false;
+
+        BulletScatter = ParticleSystem.shape.arc;
     }
 
     void OnParticleCollision(GameObject other)
@@ -46,8 +54,11 @@ public class ParticleCollision : MonoBehaviour
 
             Enemy.TakeDamage(Damage);
 
-            // Apply push back force
-            Enemy.SetStoppingPower(StoppingPowerTime);
+            // Apply Slow
+            if (SlowTime != 0)
+            {
+                Enemy.SetSlowTime(SlowTime);
+            }
         }
     }
 
@@ -61,12 +72,27 @@ public class ParticleCollision : MonoBehaviour
         {
             float Distance = Vector3.Distance(Player.position, CurrentTarget.transform.position);
             if (Distance < Range) {
+
+                // Get the target
                 GameObject CurrentTargetMark = Player.GetComponent<PlayerController>().CurrentTarget.GetComponent<Enemy>().TargetMark;
 
+                // Aim
                 float DisX = transform.position.x - CurrentTargetMark.transform.position.x;
                 float DisY = transform.position.y - CurrentTargetMark.transform.position.y;
-                transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(-DisY, -DisX) * Mathf.Rad2Deg));
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(-DisY, -DisX) * Mathf.Rad2Deg - BulletScatter / 2));
 
+                // Change sprite rotation
+                Debug.Log(transform.rotation.z);
+                if (Mathf.Abs(transform.rotation.z) > 0.5)
+                {
+                    Sprite.transform.localScale = new Vector3(1.5f, -1.5f, 0);
+                }
+                else 
+                {
+                    Sprite.transform.localScale = new Vector3(1.5f, 1.5f, 0);
+                }
+
+                // Fire
                 if (CanFire)
                 {
                     Fire();
@@ -78,7 +104,7 @@ public class ParticleCollision : MonoBehaviour
     }
 
     public void Fire() {
-        ParticleSystem.Emit((int)BulletsNumber);
+        ParticleSystem.Emit(BulletsNumber);
     }
 
     public void UpdateUseTime()

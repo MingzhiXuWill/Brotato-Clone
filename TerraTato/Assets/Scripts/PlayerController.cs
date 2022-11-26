@@ -5,32 +5,52 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Weapon, Target
-    public GameObject WeaponSlot1;
-    public GameObject WeaponSlot2;
-    public GameObject WeaponSlot3;
-    public GameObject WeaponSlot4;
+    public GameObject[] WeaponSlots;
+
+    public GameObject[] Weapons;
 
     [HideInInspector]
     public GameObject CurrentTarget;
 
+    public GameObject TargetMark;
+
     // Player movement speed
     public float MoveSpeed;
 
+    // Total Coins
+    public int TotalCoins;
+
     private void Start()
     {
-
+        SpawnWeapon(WeaponSlots[0], Weapons[0], true);
     }
 
     void Update()
     {
         // Move
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        float xMovement = Input.GetAxisRaw("Horizontal");
+        float yMovement = Input.GetAxisRaw("Vertical");
 
-        transform.position += new Vector3(x * MoveSpeed * Time.deltaTime, y * MoveSpeed * Time.deltaTime, 0);
+        var Movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
+        transform.Translate(MoveSpeed * Movement.normalized * Time.deltaTime);
 
         // FindEnemy
         CurrentTarget = FindClosestEnemy();
+    }
+
+    public void SpawnWeapon(GameObject WeaponSlot, GameObject Weapon, bool Replace) {
+        if (WeaponSlot.transform.childCount == 0)
+        {
+            Instantiate(Weapon, WeaponSlot.transform.position, WeaponSlot.transform.rotation, WeaponSlot.transform);
+        }
+        if (WeaponSlot.transform.childCount >= 0 && Replace)
+        {
+            foreach (Transform child in WeaponSlot.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Instantiate(Weapon, WeaponSlot.transform.position, WeaponSlot.transform.rotation, WeaponSlot.transform);
+        }
     }
 
     public GameObject FindClosestEnemy()

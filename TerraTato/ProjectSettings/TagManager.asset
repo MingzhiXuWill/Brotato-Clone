@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Confiner
+  - Coins
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - Enemy
   - Confiner
   - Player
-  - 
-  - 
+  - Coins
+  - Weapon
   - 
   - 
   - 

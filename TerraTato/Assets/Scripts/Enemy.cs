@@ -22,14 +22,17 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public float CurrentHealth;
 
-    public float MinDistance;
+    public float GoldCoinCarried;
 
-    // Knock back
-    float StoppingPowerTime = 0;
+    // Slow
+    float SlowTime = 0;
 
     // Sound
     public AudioClip HurtSound;
     public AudioClip KilledSound;
+
+    // Coin
+    public GameObject GoldCoin;
 
     void Start()
     {
@@ -61,6 +64,10 @@ public class Enemy : MonoBehaviour
             SoundManager.sndman.PlaySound(KilledSound, 1f);
 
             Destroy(gameObject);
+
+            GameObject Coin = Instantiate(GoldCoin, transform.position, transform.rotation);
+
+            Coin.GetComponent<GoldCoin>().CoinValue = GoldCoinCarried;
         }
     }
 
@@ -78,27 +85,24 @@ public class Enemy : MonoBehaviour
 
     private void Movement()
     {
-        //Chase player
-        if (Vector3.Distance(Player.position, transform.position) >= MinDistance)
-        {
-            Vector3 direction = (Player.position - transform.position).normalized;
+        Vector3 direction = (Player.position - transform.position).normalized;
 
-            // Apply Stopping Power
-            if (StoppingPowerTime >= 0)
-            {
-                StoppingPowerTime -= Time.deltaTime;
-                Rigidbody.velocity = direction * MoveSpeed / 3;
-            }
-            else{
-                Rigidbody.velocity = direction * MoveSpeed;
-            }       
+        // Apply Stopping Power
+        if (SlowTime >= 0)
+        {
+            SlowTime -= Time.deltaTime;
+            Rigidbody.velocity = direction * MoveSpeed / 5;
+        }
+        else
+        {
+            Rigidbody.velocity = direction * MoveSpeed;
         }
     }
 
-    public void SetStoppingPower(float duration)
+    public void SetSlowTime(float duration)
     {
-        if (StoppingPowerTime < duration) {
-            StoppingPowerTime = duration;
+        if (SlowTime < duration) {
+            SlowTime = duration;
         }
     }
 }
