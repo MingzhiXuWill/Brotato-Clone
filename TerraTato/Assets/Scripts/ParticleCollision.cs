@@ -82,7 +82,6 @@ public class ParticleCollision : MonoBehaviour
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(-DisY, -DisX) * Mathf.Rad2Deg - BulletScatter / 2));
 
                 // Change sprite rotation
-                Debug.Log(transform.rotation.z);
                 if (Mathf.Abs(transform.rotation.z) > 0.5)
                 {
                     Sprite.transform.localScale = new Vector3(1.5f, -1.5f, 0);
