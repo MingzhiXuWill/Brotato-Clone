@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 60
-  m_Sprite: {fileID: 21300000, guid: 762660a0330690b41b36fe9d3990647f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ada1905083c78d4459eaf82c939e0bbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6235598689512413320}
   - component: {fileID: 6235598689512413335}
   m_Layer: 10
-  m_Name: P90
+  m_Name: Midas Prime
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,17 +134,17 @@ MonoBehaviour:
   ParticleSystem: {fileID: 0}
   Player: {fileID: 0}
   CurrentTarget: {fileID: 0}
-  Name: P90
-  TooltipText: Rush B!!!
-  Damage: 10
-  UseTime: 0.1
+  Name: Midas Prime
+  TooltipText: MANKIND IS DEAD.
+  Damage: 55
+  UseTime: 1
   SlowTime: 0
   BulletsNumber: 1
-  Range: 6
+  Range: 18
   BulletScatter: 0
   CanFire: 0
   UseTimeCounter: 0
-  FireSound: {fileID: 8300000, guid: 1c87bcab0018912499da7f582842f076, type: 3}
+  FireSound: {fileID: 8300000, guid: 618181028309c1c40a3bb734ecce9d87, type: 3}
   Sprite: {fileID: 6235598688313355310}
 --- !u!198 &6235598689512413320
 ParticleSystem:
@@ -282,7 +282,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 400
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -918,7 +918,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 5
+      value: 1
       mode: 0
       spread: 0
       speed:

@@ -10,13 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7459153014111917281}
   - component: {fileID: 7459153014111917280}
-  - component: {fileID: 7459153014111917283}
-  - component: {fileID: -7754251974815121387}
   - component: {fileID: -5997186004735309301}
   - component: {fileID: -2747607868557790448}
   - component: {fileID: -2851490878295700002}
+  - component: {fileID: 3066850165417524847}
   m_Layer: 9
-  m_Name: GoldCoinLoot
+  m_Name: HeartLoot
   m_TagString: Coins
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 60
-  m_Sprite: {fileID: -460423845, guid: 61baa28cb00955a41a71dd58d51bb740, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca9ee58d75e2ac645bdfc1bc2fb53941, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,47 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7459153014111917283
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7459153014111917282}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 323362aaaf490da458fe4fa519bb2e1d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-7754251974815121387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7459153014111917282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 541a2731c57112a40aa5b1c551402c18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  CoinValue: 0
-  MoveSpeed: 30
-  CoinSound:
-  - {fileID: 8300000, guid: c85779d0ac822b044a6cd07b65e6d347, type: 3}
-  - {fileID: 8300000, guid: 87b782e4d3e83bf4281c8a5e4401bdc5, type: 3}
-  - {fileID: 8300000, guid: 8474c66e3ae88204aa8eb8249d64cfec, type: 3}
-  - {fileID: 8300000, guid: b6af2be2aa5b9a54ba17f03b650a9c0d, type: 3}
-  - {fileID: 8300000, guid: 092f005330d82b64e8f09e3622bf7698, type: 3}
 --- !u!61 &-5997186004735309301
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,18 +101,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0014341623, y: 0.0028683841}
+  m_Offset: {x: -0.00093460083, y: 0.0013576448}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.375, y: 0.5}
+    oldSize: {x: 0.5625, y: 0.5625}
     newSize: {x: 0.375, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.37998268, y: 0.5066436}
+  m_Size: {x: 0.5634891, y: 0.5628337}
   m_EdgeRadius: 0
 --- !u!50 &-2747607868557790448
 Rigidbody2D:
@@ -249,7 +207,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.8592127, b: 0.41194963, a: 1}
+      key0: {r: 1, g: 0.48283875, b: 0.41176474, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -285,3 +243,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &3066850165417524847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459153014111917282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3ea24715c5fba44b7eb0ec77071857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  MoveSpeed: 30
+  HeartSound: {fileID: 8300000, guid: 4b3c8ac69748cd94b9d2c6925a6b5224, type: 3}

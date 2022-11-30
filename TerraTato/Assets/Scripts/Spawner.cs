@@ -5,10 +5,10 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public float SpawnTimeMax;
-
+    [HideInInspector]
     public float SpawnTimeCount;
-
-    bool CanSpawn;
+    [HideInInspector]
+    public bool CanSpawn;
 
     public GameObject Zombie;
 

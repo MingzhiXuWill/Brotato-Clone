@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: -6335177383701489862}
   - component: {fileID: -1614676919913908818}
   m_Layer: 6
-  m_Name: Zombie
+  m_Name: WulfrumGyrator
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,8 +180,8 @@ MonoBehaviour:
   CurrentHealth: 0
   GoldCoinCarried: 5
   AnimationSpeed: 0.5
-  HurtSound: {fileID: 8300000, guid: 99cf30d5b4fdc0846b0d65a83ba2c1e3, type: 3}
-  KilledSound: {fileID: 8300000, guid: ee89e02bcedb58545ac527052221e58c, type: 3}
+  HurtSound: {fileID: 8300000, guid: 0d34ab47232243843aa99bd8a7e56a67, type: 3}
+  KilledSound: {fileID: 8300000, guid: 7b967a8d12d29a54f883178369456162, type: 3}
   GoldCoin: {fileID: 7459153014111917282, guid: 066b05dcab64ab64b9bc78d81ee1b77a, type: 3}
 --- !u!212 &1948111871152029647
 SpriteRenderer:
@@ -224,7 +224,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 236749797, guid: 076c380c0b8c68440bdc3b4ed6a8fe88, type: 3}
+  m_Sprite: {fileID: 1610809571, guid: 615e621aa937bc2488dc023a4dfba230, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -252,7 +252,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.0625, y: 1.4375}
+    oldSize: {x: 1.25, y: 1.3125}
     newSize: {x: 1.0625, y: 1.4375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -292,7 +292,7 @@ Animator:
   m_GameObject: {fileID: 1948111871152029644}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 23205ae6dc50f6040bbe29533c64f159, type: 2}
+  m_Controller: {fileID: 9100000, guid: e0637a1a4c462744c921f6dfdae0a2f0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
