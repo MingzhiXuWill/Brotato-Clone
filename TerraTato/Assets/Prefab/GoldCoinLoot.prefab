@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   CoinValue: 0
-  MoveSpeed: 30
+  MoveSpeed: 15
   CoinSound:
   - {fileID: 8300000, guid: c85779d0ac822b044a6cd07b65e6d347, type: 3}
   - {fileID: 8300000, guid: 87b782e4d3e83bf4281c8a5e4401bdc5, type: 3}

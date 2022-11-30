@@ -256,5 +256,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  MoveSpeed: 30
+  MoveSpeed: 15
   HeartSound: {fileID: 8300000, guid: 4b3c8ac69748cd94b9d2c6925a6b5224, type: 3}

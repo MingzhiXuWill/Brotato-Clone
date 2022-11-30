@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6235598688313355310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6235598689512413321}
@@ -135,8 +135,8 @@ MonoBehaviour:
   Player: {fileID: 0}
   CurrentTarget: {fileID: 0}
   Name: Midas Prime
-  TooltipText: MANKIND IS DEAD.
-  Damage: 55
+  TooltipText: Mankind is dead. Blood is fuel. Hell is full.
+  Damage: 35
   UseTime: 1
   SlowTime: 0
   BulletsNumber: 1
@@ -144,8 +144,11 @@ MonoBehaviour:
   BulletScatter: 0
   CanFire: 0
   UseTimeCounter: 0
+  GunSpriteSize: 1.5
   FireSound: {fileID: 8300000, guid: 618181028309c1c40a3bb734ecce9d87, type: 3}
   Sprite: {fileID: 6235598688313355310}
+  BulletNeedToFire: 0
+  FiredThisFrame: 0
 --- !u!198 &6235598689512413320
 ParticleSystem:
   m_ObjectHideFlags: 0

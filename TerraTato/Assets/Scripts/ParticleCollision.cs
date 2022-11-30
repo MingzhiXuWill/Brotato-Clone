@@ -29,11 +29,19 @@ public class ParticleCollision : MonoBehaviour
     [HideInInspector]
     public float UseTimeCounter;
 
+    public float GunSpriteSize;
+
     // Sound
     public AudioClip FireSound;
 
     // Sprite
     public GameObject Sprite;
+
+    // Fire Cache
+    [HideInInspector]
+    public int BulletNeedToFire;
+    [HideInInspector]
+    public bool FiredThisFrame;
 
     void Start()
     {
@@ -44,6 +52,8 @@ public class ParticleCollision : MonoBehaviour
         CanFire = false;
 
         BulletScatter = ParticleSystem.shape.arc;
+
+        Sprite.transform.localScale = new Vector3(GunSpriteSize, GunSpriteSize, 0);
     }
 
     void OnParticleCollision(GameObject other)
@@ -66,6 +76,8 @@ public class ParticleCollision : MonoBehaviour
     {
         UpdateUseTime();
 
+        FiredThisFrame = false;
+
         CurrentTarget = Player.GetComponent<PlayerController>().CurrentTarget;
 
         if (CurrentTarget != null)
@@ -84,26 +96,32 @@ public class ParticleCollision : MonoBehaviour
                 // Change sprite rotation
                 if (Mathf.Abs(transform.rotation.z) > 0.5)
                 {
-                    Sprite.transform.localScale = new Vector3(1.5f, -1.5f, 0);
+                    Sprite.transform.localScale = new Vector3(GunSpriteSize, -GunSpriteSize, 0);
                 }
                 else 
                 {
-                    Sprite.transform.localScale = new Vector3(1.5f, 1.5f, 0);
+                    Sprite.transform.localScale = new Vector3(GunSpriteSize, GunSpriteSize, 0);
                 }
 
                 // Fire
                 if (CanFire)
                 {
-                    Fire();
+                    BulletNeedToFire += BulletsNumber;
                     CanFire = false;
                     SoundManager.sndman.PlaySound(FireSound, 1f);
                 }
             }
         }
+
+        Fire();
     }
 
-    public void Fire() {
-        ParticleSystem.Emit(BulletsNumber);
+    public void Fire()
+    {
+        if (BulletNeedToFire > 0) {
+            ParticleSystem.Emit(1);
+            BulletNeedToFire -= 1;
+        }
     }
 
     public void UpdateUseTime()

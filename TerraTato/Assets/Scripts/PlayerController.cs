@@ -45,16 +45,32 @@ public class PlayerController : MonoBehaviour
     // Sounds
     public AudioClip HurtSound;
 
+    public AudioClip FootStepSound;
+
     void Start()
     {
-        // Weapons
-        SpawnWeapon(WeaponSlots[0], Weapons[0], true);
-        SpawnWeapon(WeaponSlots[1], Weapons[1], true);
+        // Weapons spawn
+        if (Weapons[0] != null)
+        {
+            SpawnWeapon(WeaponSlots[0], Weapons[0], true);
+        }
+        if (Weapons[1] != null)
+        {
+            SpawnWeapon(WeaponSlots[1], Weapons[1], true);
+        }
+        if (Weapons[2] != null)
+        {
+            SpawnWeapon(WeaponSlots[2], Weapons[2], true);
+        }
+        if (Weapons[3] != null)
+        {
+            SpawnWeapon(WeaponSlots[3], Weapons[3], true);
+        }
 
         // Animation
         SpriteRenderer = GetComponent<SpriteRenderer>();
         Animator = GetComponent<Animator>();
-        Animator.speed = AnimationSpeed;
+
 
         // Health
         CurrentHealth = MaxHealth;
@@ -66,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Animator.speed = AnimationSpeed;
+
         Movement();
 
         InvincibilityUpdate();
@@ -73,6 +91,11 @@ public class PlayerController : MonoBehaviour
         CheckDeath();
 
         CurrentTarget = FindClosestEnemy();
+    }
+
+    public void PlayFootStep()
+        {
+        SoundManager.sndman.PlaySound(FootStepSound, 1f);
     }
 
     public void SpawnWeapon(GameObject WeaponSlot, GameObject Weapon, bool Replace) {
