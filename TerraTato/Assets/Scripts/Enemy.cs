@@ -102,12 +102,12 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         // Create damage text
-
-        FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage);
+        FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, false);
 
         // Play hit sound
         SoundManager.sndman.PlaySound(HurtSound, 1f);
 
+        // Take damage
         CurrentHealth -= Damage;
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heart : MonoBehaviour
+public class LifeFruitLoot : MonoBehaviour
 {
     [HideInInspector]
     public Transform Target;

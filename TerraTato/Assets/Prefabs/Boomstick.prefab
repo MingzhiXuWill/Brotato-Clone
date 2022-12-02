@@ -145,7 +145,7 @@ MonoBehaviour:
   CanFire: 0
   UseTimeCounter: 0
   GunSpriteSize: 1.5
-  FireSound: {fileID: 8300000, guid: 618181028309c1c40a3bb734ecce9d87, type: 3}
+  FireSound: {fileID: 8300000, guid: 3c59df9dbf5a3b04e84c55378ded8f2e, type: 3}
   Sprite: {fileID: 6235598688313355310}
   BulletNeedToFire: 0
   FiredThisFrame: 0

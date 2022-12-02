@@ -84,7 +84,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: s
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39e6b311ba20ddf43b937d7e0f090891, type: 2}
   m_sharedMaterial: {fileID: 7019775559250192831, guid: 39e6b311ba20ddf43b937d7e0f090891, type: 2}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 2123115752845511678}
   - component: {fileID: 2575200793815327155}
   m_Layer: 0
-  m_Name: FloatingTextParent
+  m_Name: FloatingTextParent Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -62,12 +62,21 @@ public class ParticleCollision : MonoBehaviour
         {
             Enemy Enemy = other.GetComponent<Enemy>();
 
-            Enemy.TakeDamage(Damage);
+            LifeFruit LifeFruit = other.GetComponent<LifeFruit>();
 
-            // Apply Slow
-            if (SlowTime != 0)
+            if (Enemy != null)
             {
-                Enemy.SetSlowTime(SlowTime);
+                Enemy.TakeDamage(Damage);
+
+                // Apply Slow
+                if (SlowTime != 0)
+                {
+                    Enemy.SetSlowTime(SlowTime);
+                }
+            }
+            else 
+            {
+                LifeFruit.TakeDamage(Damage);
             }
         }
     }
@@ -86,7 +95,7 @@ public class ParticleCollision : MonoBehaviour
             if (Distance < Range) {
 
                 // Get the target
-                GameObject CurrentTargetMark = Player.GetComponent<PlayerController>().CurrentTarget.GetComponent<Enemy>().TargetMark;
+                GameObject CurrentTargetMark = Player.GetComponent<PlayerController>().CurrentTarget.transform.Find("FloatingTextMark").gameObject;
 
                 // Aim
                 float DisX = transform.position.x - CurrentTargetMark.transform.position.x;

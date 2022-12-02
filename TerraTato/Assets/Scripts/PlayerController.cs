@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    // Weapon, Target
+    #region Weapon, Target
     public GameObject[] WeaponSlots;
 
     public GameObject[] Weapons;
@@ -13,8 +13,10 @@ public class PlayerController : MonoBehaviour
     public GameObject CurrentTarget;
 
     public GameObject TargetMark;
+    public GameObject FloatingTextMark;
+    #endregion Weapon, Target
 
-    // Animation
+    #region Animation
     private SpriteRenderer SpriteRenderer;
 
     private Animator Animator;
@@ -25,7 +27,11 @@ public class PlayerController : MonoBehaviour
 
     public float AnimationSpeed;
 
-    // Player stats
+    public float xBoundary;
+    public float yBoundary;
+    #endregion Animation
+
+    #region Player
     public float MoveSpeed;
 
     public float MaxHealth;
@@ -37,13 +43,14 @@ public class PlayerController : MonoBehaviour
     public float InvincibilityCount;
     [HideInInspector]
     public bool Invincibility;
+    #endregion Player
 
     // Total Coins
     [HideInInspector]
     public int TotalCoins;
 
     // Sounds
-    public AudioClip HurtSound;
+    public AudioClip[] HurtSound;
 
     public AudioClip FootStepSound;
 
@@ -122,21 +129,22 @@ public class PlayerController : MonoBehaviour
         transform.Translate(MoveSpeed * Movement.normalized * Time.deltaTime);
 
         // Set Boundary
-        if (transform.position.x >= 30) {
-            transform.position -= new Vector3(transform.position.x - 30, 0, 0);
+
+        if (transform.position.x >= xBoundary) {
+            transform.position -= new Vector3(transform.position.x - xBoundary, 0, 0);
         }
-        else if (transform.position.x <= -30)
+        else if (transform.position.x <= -xBoundary)
         {
-            transform.position -= new Vector3(transform.position.x + 30, 0, 0);
+            transform.position -= new Vector3(transform.position.x + xBoundary, 0, 0);
         }
 
-        if (transform.position.y >= 18)
+        if (transform.position.y >= (yBoundary - 2))
         {
-            transform.position -= new Vector3(0, transform.position.y - 18, 0);
+            transform.position -= new Vector3(0, transform.position.y - (yBoundary - 2), 0);
         }
-        else if (transform.position.y <= -22)
+        else if (transform.position.y <= -(yBoundary + 2))
         {
-            transform.position -= new Vector3(0, transform.position.y + 22, 0);
+            transform.position -= new Vector3(0, transform.position.y + (yBoundary + 2), 0);
         }
 
         // Flip Sprite
@@ -194,13 +202,14 @@ public class PlayerController : MonoBehaviour
         {
             Invincibility = true;
 
+            // Create damage text
+            FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, true);
+
             // Play hit sound
-            SoundManager.sndman.PlaySound(HurtSound, 1f);
+            SoundManager.sndman.PlaySound(HurtSound[(int)Random.Range(0, 2.99f)], 1f);
 
             // Take damage
             CurrentHealth -= Damage;
-
-            Debug.Log("take " + Damage + " damage");
         }
     }
 

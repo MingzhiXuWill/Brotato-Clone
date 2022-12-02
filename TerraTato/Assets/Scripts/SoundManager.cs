@@ -34,7 +34,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(AudioClip Sound, float Volume)
     {
-        //SetVolume(Volume);
+        //SetVolume(DefaultVolume);
         audioSource.PlayOneShot(Sound);
         //ResetVolume();
     }
