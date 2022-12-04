@@ -58,8 +58,10 @@ public class ParticleCollision : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
+        Debug.Log(other.tag);
         if (other.tag == "Enemy")
         {
+            
             Enemy Enemy = other.GetComponent<Enemy>();
 
             LifeFruit LifeFruit = other.GetComponent<LifeFruit>();

@@ -61,8 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c0b95ecff681544b87cf0c30db03d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartColor: {r: 0.9607843, g: 0.34981483, b: 0.21176468, a: 1}
-  EndColor: {r: 0.9254902, g: 0.24915297, b: 0.24313721, a: 0.8980392}
+  StartColor: {r: 0.21176468, g: 0.9607843, b: 0.4023619, a: 1}
+  EndColor: {r: 0.24313721, g: 0.9254902, b: 0.36490774, a: 0.8980392}
   ColorChangingSpeed: 4
 --- !u!114 &5505758349820903167
 MonoBehaviour:
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 2123115752845511678}
   - component: {fileID: 2575200793815327155}
   m_Layer: 0
-  m_Name: FloatingTextParent Player
+  m_Name: FloatingTextParent Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

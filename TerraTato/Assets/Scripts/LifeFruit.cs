@@ -52,7 +52,7 @@ public class LifeFruit : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         // Create damage text
-        FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, false);
+        FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, 1);
 
         // Take damage
         CurrentHealth -= Damage;

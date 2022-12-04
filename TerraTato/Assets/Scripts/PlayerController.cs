@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     public float InvincibilityCount;
     [HideInInspector]
     public bool Invincibility;
+
+    public float HealthAmount;
     #endregion Player
 
     // Total Coins
@@ -170,12 +172,13 @@ public class PlayerController : MonoBehaviour
 
     public GameObject FindClosestEnemy()
     {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] Enemies;
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
-        foreach (GameObject go in gos)
+        foreach (GameObject go in Enemies)
         {
             Vector3 diff = go.transform.position - position;
             float curDistance = diff.sqrMagnitude;
@@ -185,6 +188,7 @@ public class PlayerController : MonoBehaviour
                 distance = curDistance;
             }
         }
+
         return closest;
     }
 
@@ -203,13 +207,44 @@ public class PlayerController : MonoBehaviour
             Invincibility = true;
 
             // Create damage text
-            FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, true);
+            FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, 2);
 
             // Play hit sound
             SoundManager.sndman.PlaySound(HurtSound[(int)Random.Range(0, 2.99f)], 1f);
 
             // Take damage
             CurrentHealth -= Damage;
+
+            CheckHealth();
+        }
+    }
+
+    public void HealthDamage() 
+    {
+        int HealNumber = (int)(MaxHealth / 100 * HealthAmount);
+
+        // Health damage
+        CurrentHealth += HealNumber;
+
+        // Create damage text
+        FloatingTextManager.ftman.CreateText(FloatingTextMark, HealNumber, 3);       
+
+        CheckHealth();
+    }
+
+    public void LootCoin(int Coin) 
+    {
+        TotalCoins += Coin;
+    }
+
+    public void CheckHealth() 
+    {
+        if (CurrentHealth > MaxHealth) {
+            CurrentHealth = MaxHealth;
+        }
+        else if (CurrentHealth < 0)
+        {
+            CurrentHealth = 0;
         }
     }
 

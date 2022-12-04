@@ -8,8 +8,8 @@ public class FloatingTextManager : MonoBehaviour
     // Floating Text
     public GameObject FloatingTextEnemy;
     public GameObject FloatingTextPlayer;
-    public GameObject CanvasEnemy;
-    public GameObject CanvasPlayer;
+    public GameObject FloatingTextHeal;
+    public GameObject Canvas;
 
     public static FloatingTextManager ftman;
     void Start()
@@ -17,7 +17,7 @@ public class FloatingTextManager : MonoBehaviour
         ftman = this;
     }
 
-    public void CreateText(GameObject FloatingTextMark, int Damage, bool Player)
+    public void CreateText(GameObject FloatingTextMark, int Damage, int TextType)
     {
         float RandomFloatX = 0.5f;
         float RandomFloatY = 1f;
@@ -28,18 +28,7 @@ public class FloatingTextManager : MonoBehaviour
 
 
 
-        if (Player) 
-        {
-            InsFloatingText = Instantiate(FloatingTextPlayer, RandomFloatingTextPosition, Quaternion.identity);
-
-            TextMeshProUGUI Text = InsFloatingText.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-
-            Text.text = Damage.ToString();
-
-            InsFloatingText.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, Random.Range(-5f, 5f)));
-            InsFloatingText.transform.parent = CanvasEnemy.transform;
-        }
-        else
+        if (TextType == 1)
         {
             InsFloatingText = Instantiate(FloatingTextEnemy, RandomFloatingTextPosition, Quaternion.identity);
 
@@ -48,7 +37,29 @@ public class FloatingTextManager : MonoBehaviour
             Text.text = Damage.ToString();
 
             InsFloatingText.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, Random.Range(-5f, 5f)));
-            InsFloatingText.transform.parent = CanvasPlayer.transform;
+            InsFloatingText.transform.parent = Canvas.transform;
+        }
+        else if (TextType == 2)
+        {
+            InsFloatingText = Instantiate(FloatingTextPlayer, RandomFloatingTextPosition, Quaternion.identity);
+
+            TextMeshProUGUI Text = InsFloatingText.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+
+            Text.text = Damage.ToString();
+
+            InsFloatingText.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, Random.Range(-5f, 5f)));
+            InsFloatingText.transform.parent = Canvas.transform;
+        }
+        else if (TextType == 3) 
+        {
+            InsFloatingText = Instantiate(FloatingTextHeal, RandomFloatingTextPosition, Quaternion.identity);
+
+            TextMeshProUGUI Text = InsFloatingText.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+
+            Text.text = Damage.ToString();
+
+            InsFloatingText.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, Random.Range(-5f, 5f)));
+            InsFloatingText.transform.parent = Canvas.transform;
         }
     }
 }

@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public float CurrentHealth;
 
-    public float GoldCoinCarried;
+    public int GoldCoinCarried;
 
     // Animation
     private SpriteRenderer SpriteRenderer;
@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         // Create damage text
-        FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, false);
+        FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, 1);
 
         // Play hit sound
         SoundManager.sndman.PlaySound(HurtSound, 1f);
@@ -142,5 +142,10 @@ public class Enemy : MonoBehaviour
         if (SlowTime < duration) {
             SlowTime = duration;
         }
+    }
+
+    public void ResetHealth() 
+    {
+        CurrentHealth = MaxHealth;
     }
 }

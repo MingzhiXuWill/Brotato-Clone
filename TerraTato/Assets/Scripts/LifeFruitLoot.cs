@@ -33,6 +33,8 @@ public class LifeFruitLoot : MonoBehaviour
         {
             SoundManager.sndman.PlaySound(HeartSound, 1f);
 
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HealthDamage();
+
             Destroy(gameObject);
         }
     }

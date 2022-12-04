@@ -10,7 +10,7 @@ public class GoldCoin : MonoBehaviour
     Rigidbody2D Rigidbody;
 
     [HideInInspector]
-    public float CoinValue;
+    public int CoinValue;
 
     public float MoveSpeed;
 
@@ -35,6 +35,8 @@ public class GoldCoin : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             SoundManager.sndman.PlaySound(CoinSound[(int)Random.Range(0, 4.99f)], 1f);
+
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().LootCoin(CoinValue);
 
             Destroy(gameObject);
         }
