@@ -150,13 +150,15 @@ public class PlayerController : MonoBehaviour
         }
 
         // Flip Sprite
-        if (xMovement < 0)
-        {
-            SpriteRenderer.flipX = true;
-        }
-        else if (xMovement > 0)
-        {
-            SpriteRenderer.flipX = false;
+        if (Time.timeScale == 1) {
+            if (xMovement < 0)
+            {
+                SpriteRenderer.flipX = true;
+            }
+            else if (xMovement > 0)
+            {
+                SpriteRenderer.flipX = false;
+            }
         }
 
         // Change animation between idle and moving
@@ -258,5 +260,9 @@ public class PlayerController : MonoBehaviour
                 InvincibilityCount = 0;
             }
         }
+    }
+
+    public void ResetPos() {
+        transform.position = new Vector3(0, 0, 0);
     }
 }

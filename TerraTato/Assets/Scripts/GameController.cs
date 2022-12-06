@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -59,7 +60,12 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI TextCoinNumber;
 
     public Image HealthBar;
+
+    public GameObject PauseMenu;
     #endregion
+
+    [HideInInspector]
+    public static int GameState = 1; // 1 = Ingame // 2 = Paused // 3 = Shop
 
     void Start()
     {
@@ -78,6 +84,8 @@ public class GameController : MonoBehaviour
         TextCoinNumber = TextCoinNumberUI.GetComponent<TextMeshProUGUI>();
 
         PlayerScript = Player.GetComponent<PlayerController>();
+
+        PauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -88,6 +96,19 @@ public class GameController : MonoBehaviour
 
         GameUIUpdate();
         LevelTimeUpdate();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            if (GameState == 1) 
+            {
+                PauseGame();
+
+            }
+            else if (GameState == 2)
+            {
+                ResumeGame();
+            }
+        }
     }
 
     public void GameUIUpdate() {
@@ -145,5 +166,39 @@ public class GameController : MonoBehaviour
         {
             LevelTimeRemains -= Time.deltaTime;
         }
+    }
+
+    public void PauseGame() 
+    {
+        PauseMenu.SetActive(true);
+        Time.timeScale = 0;
+
+        GameState = 2;
+    }
+
+    public void ResumeGame()
+    {
+        PauseMenu.SetActive(false);
+        Time.timeScale = 1;
+
+        GameState = 1;
+    }
+
+    public void GoToMainMenu() 
+    {
+        PauseMenu.SetActive(false);
+        Time.timeScale = 1;
+
+        GameState = 1;
+        //SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void testButton() {
+        Debug.Log("CLicked");
     }
 }
