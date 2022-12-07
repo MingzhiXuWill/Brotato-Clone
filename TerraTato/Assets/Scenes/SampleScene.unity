@@ -105651,7 +105651,7 @@ MonoBehaviour:
   - {fileID: 1948111871152029644, guid: d74b040093816e342bd5e89f5928c0e7, type: 3}
   - {fileID: 1948111871152029644, guid: 260460386392cc747a2d43db1212cf8c, type: 3}
   - {fileID: 1948111871152029644, guid: 2e87e75a7b7fa0141b7102794345951f, type: 3}
-  - {fileID: 1948111871152029644, guid: 2e09d469541853545846d39507c933f7, type: 3}
+  - {fileID: 2758843296263568873, guid: 178f7010f221eab47b98f68711245193, type: 3}
   SpawnerMark: {fileID: 237273147372237134, guid: 84a1bfc26b26c9e48af684f327a2973f, type: 3}
   xBoundary: 20
   yBoundary: 15
@@ -106016,7 +106016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &668914071
 Grid:
   m_ObjectHideFlags: 0
