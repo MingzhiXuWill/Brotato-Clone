@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 816320710409155093}
   - component: {fileID: 6682667416521515730}
   m_Layer: 0
-  m_Name: Anklet_of_the_Wind
-  m_TagString: Untagged
+  m_Name: T2_Anklet_of_the_Wind
+  m_TagString: Accessory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

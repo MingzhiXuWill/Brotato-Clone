@@ -72,5 +72,36 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
             ItemPanel.Icon.GetComponent<Image>().sprite = Weapon.Sprite.GetComponent<SpriteRenderer>().sprite;
         }
+
+        else if (Item.tag == "Accessory") {
+            Accessory Accessory = Item.GetComponent<Accessory>();
+
+            ItemPanel.Name.text = Accessory.Name;
+            ItemPanel.Name.color = RarityColors[Accessory.Rarity - 1];
+
+            ItemPanel.Type.text = "Tier " + Accessory.Rarity + " Accessory";
+
+            string DetailText = "";
+            if (Accessory.Health != 0) {
+                DetailText += "Health: +" + Accessory.Health+ "\n";
+            }
+            if (Accessory.Damage != 0)
+            {
+                DetailText += "Damage: +" + Accessory.Damage + "%" + "\n";
+            }
+            if (Accessory.MoveSpeed != 0)
+            {
+                DetailText += "MoveSpeed: +" + Accessory.MoveSpeed;
+            }
+
+            ItemPanel.Details.text = DetailText;
+
+            ItemPanel.Tooltip.text = Accessory.TooltipText;
+            ItemPanel.Tooltip.color = RarityColors[Accessory.Rarity - 1];
+
+            ItemPanel.Price.text = (Accessory.SellPrice / 5).ToString();
+
+            ItemPanel.Icon.GetComponent<Image>().sprite = Accessory.GetComponent<SpriteRenderer>().sprite;
+        }
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4657775898246897858
+--- !u!1 &5525040888660159132
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8866195332350696484}
-  - component: {fileID: 2339526158388640153}
-  - component: {fileID: 7978183910090821233}
+  - component: {fileID: 6819763662480564750}
+  - component: {fileID: 3592013914130359602}
+  - component: {fileID: 6847776746266983510}
   m_Layer: 0
-  m_Name: Shark_Tooth_Necklace
-  m_TagString: Untagged
+  m_Name: T3_Hermes_Boots
+  m_TagString: Accessory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8866195332350696484
+--- !u!4 &6819763662480564750
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4657775898246897858}
+  m_GameObject: {fileID: 5525040888660159132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.334263, y: -11.625532, z: 0}
+  m_LocalPosition: {x: -26.494486, y: -8.228461, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2339526158388640153
+--- !u!212 &3592013914130359602
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4657775898246897858}
+  m_GameObject: {fileID: 5525040888660159132}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,33 +74,33 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 753a9df59efbc53459b13095f16a2beb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 188a8fb542d116549a22f254a5dfc47b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.875, y: 0.9375}
+  m_Size: {x: 1.0625, y: 0.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7978183910090821233
+--- !u!114 &6847776746266983510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4657775898246897858}
+  m_GameObject: {fileID: 5525040888660159132}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fe02e5f34487be418ffab027016ac19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Shark Tooth Necklace
+  Name: Hermes Boots
   TooltipText: 
   Health: 0
   Damage: 0
-  MoveSpeed: 0
-  Rarity: 1
+  MoveSpeed: 0.15
+  Rarity: 3
   SellPrice: 0

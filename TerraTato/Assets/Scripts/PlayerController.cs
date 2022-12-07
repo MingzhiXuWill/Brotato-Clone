@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public GameObject[] WeaponSlots;
 
     public GameObject[] Weapons;
+
+    public GameObject[] Accessories;
+
     [HideInInspector]
     public GameObject CurrentTarget;
 
@@ -100,6 +103,42 @@ public class PlayerController : MonoBehaviour
         CheckDeath();
 
         CurrentTarget = FindClosestEnemy();
+    }
+
+    public void SortWeapons() {
+        List<GameObject> gameObjectList = new List<GameObject>(Weapons);
+        gameObjectList.RemoveAll(x => x == null);  
+        GameObject[] TempWeapons = gameObjectList.ToArray();
+
+        for (int i1 = 0; i1 < Weapons.Length; i1++)
+        {
+            if (i1 < TempWeapons.Length)
+            {
+                Weapons[i1] = TempWeapons[i1];
+            }
+            else {
+                Weapons[i1] = null;
+            }
+        }
+    }
+
+    public void SortAccessories()
+    {
+        List<GameObject> gameObjectList = new List<GameObject>(Accessories);
+        gameObjectList.RemoveAll(x => x == null);
+        GameObject[] TempAccessories = gameObjectList.ToArray();
+
+        for (int i1 = 0; i1 < Accessories.Length; i1++)
+        {
+            if (i1 < TempAccessories.Length)
+            {
+                Accessories[i1] = TempAccessories[i1];
+            }
+            else
+            {
+                Accessories[i1] = null;
+            }
+        }
     }
 
     public void PlayFootStep()

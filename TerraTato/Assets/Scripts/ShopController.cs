@@ -6,6 +6,7 @@ using TMPro;
 
 public class ShopController : MonoBehaviour
 {
+    [HideInInspector]
     public PlayerController Player;
 
     public int CurrentTier;
@@ -36,12 +37,18 @@ public class ShopController : MonoBehaviour
 
     void Start()
     {
+        // Set up shop
         ShopItems = new GameObject[4];
-
+        // Find the player object
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        Player.SortWeapons();
+        Player.SortAccessories();
+
         Reroll();
+
         WeaponUpdate();
         ShopItemUpdate();
+        ItemUpdate();
     }
 
     public void Reroll() {
@@ -79,20 +86,20 @@ public class ShopController : MonoBehaviour
     public void ItemUpdate()
     {
         int count = 0;
-        for (int i1 = 0; i1 < Player.Weapons.Length; i1++)
+        for (int i1 = 0; i1 < Player.Accessories.Length; i1++)
         {
-            if (Player.Weapons[i1] != null)
+            if (Player.Accessories[i1] != null)
             {
                 count++;
-                Image Icon = WeaponPanels[i1].transform.GetChild(0).GetComponent<Image>();
+                Image Icon = ItemPanels[i1].transform.GetChild(0).GetComponent<Image>();
 
-                WeaponPanels[i1].GetComponent<Tooltip>().ThisItem = Player.Weapons[i1];
+                ItemPanels[i1].GetComponent<Tooltip>().ThisItem = Player.Accessories[i1];
 
-                Icon.GetComponent<Image>().sprite = Player.Weapons[i1].GetComponent<ParticleCollision>().Sprite.GetComponent<SpriteRenderer>().sprite;
+                Icon.GetComponent<Image>().sprite = Player.Accessories[i1].GetComponent<SpriteRenderer>().sprite;
             }
             else
             {
-                WeaponPanels[i1].SetActive(false);
+                ItemPanels[i1].SetActive(false);
             }
         }
 
@@ -129,6 +136,38 @@ public class ShopController : MonoBehaviour
                 ItemPanel.Price.text = Weapon.SellPrice.ToString();
 
                 ItemPanel.Icon.GetComponent<Image>().sprite = Weapon.Sprite.GetComponent<SpriteRenderer>().sprite;
+            }
+            else if (Item.tag == "Accessory")
+            {
+                Accessory Accessory = Item.GetComponent<Accessory>();
+
+                ItemPanel.Name.text = Accessory.Name;
+                ItemPanel.Name.color = RarityColors[Accessory.Rarity - 1];
+
+                ItemPanel.Type.text = "Tier " + Accessory.Rarity + " Accessory";
+
+                string DetailText = "";
+                if (Accessory.Health != 0)
+                {
+                    DetailText += "Health: +" + Accessory.Health + "\n";
+                }
+                if (Accessory.Damage != 0)
+                {
+                    DetailText += "Damage: +" + Accessory.Damage + "%" + "\n";
+                }
+                if (Accessory.MoveSpeed != 0)
+                {
+                    DetailText += "MoveSpeed: +" + Accessory.MoveSpeed;
+                }
+
+                ItemPanel.Details.text = DetailText;
+
+                ItemPanel.Tooltip.text = Accessory.TooltipText;
+                ItemPanel.Tooltip.color = RarityColors[Accessory.Rarity - 1];
+
+                ItemPanel.Price.text = (Accessory.SellPrice / 5).ToString();
+
+                ItemPanel.Icon.GetComponent<Image>().sprite = Accessory.GetComponent<SpriteRenderer>().sprite;
             }
         }
     }

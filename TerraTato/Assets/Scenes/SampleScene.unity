@@ -107348,7 +107348,7 @@ MonoBehaviour:
   Player: {fileID: 1706800639}
   PlayerScript: {fileID: 0}
   CurrentLevel: 0
-  LevelTimeMax: 60
+  LevelTimeMax: 1
   LevelTimeRemains: 0
   TextLevelUI: {fileID: 863295303}
   TextTimeUI: {fileID: 1539157485}
@@ -107360,6 +107360,7 @@ MonoBehaviour:
   TextCoinNumber: {fileID: 0}
   HealthBar: {fileID: 981571982}
   PauseMenu: {fileID: 217804197}
+  ShopMenu: {fileID: 1751148832}
 --- !u!4 &514680665
 Transform:
   m_ObjectHideFlags: 0
@@ -107406,22 +107407,27 @@ MonoBehaviour:
   - {fileID: 1153187569}
   - {fileID: 1673286706}
   ItemPanels:
-  - {fileID: 1412648026}
-  - {fileID: 1003555668}
-  - {fileID: 1843454371}
-  - {fileID: 1662976115}
-  - {fileID: 1662976115}
-  - {fileID: 1662976115}
-  - {fileID: 1662976115}
-  - {fileID: 1662976115}
-  - {fileID: 1662976115}
-  - {fileID: 1662976115}
+  - {fileID: 1966253955}
+  - {fileID: 1306858423}
+  - {fileID: 431434129}
+  - {fileID: 330022542}
+  - {fileID: 267641277}
+  - {fileID: 109577904}
+  - {fileID: 1912313580}
+  - {fileID: 1420512417}
+  - {fileID: 1858477581}
+  - {fileID: 1899879878}
+  - {fileID: 824666911}
+  - {fileID: 978173002}
   ShopItems: []
   WeaponText: {fileID: 272535664}
   ItemText: {fileID: 1744791431}
   CoinText: {fileID: 1372648305}
   ItemPool:
   - ItemPoolTier:
+    - {fileID: 5844492718301990569, guid: b6d856f094455f44992fe550f0bb844b, type: 3}
+    - {fileID: 4657775898246897858, guid: 1dda6afb03267ae44a83b537810eec28, type: 3}
+    - {fileID: 3314295386229933893, guid: 95abcb44b4489e84b98b98faba63d055, type: 3}
     - {fileID: 6235598689512413334, guid: 0a67cc08907bc4d1b838250c40a01556, type: 3}
     - {fileID: 6235598689512413334, guid: 95664c429fdcef74d83b805d7e9b7d99, type: 3}
     - {fileID: 6235598689512413334, guid: 986e60e8d42bee24ab0ec0572add47ab, type: 3}
@@ -109081,7 +109087,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820195648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0029305813}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0029804704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -109094,11 +109100,11 @@ RectTransform:
   m_Father: {fileID: 1917972695}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 500}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &820195650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109393,7 +109399,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824666911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000006437301}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -109403,7 +109409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 550, y: -174.99994}
+  m_AnchoredPosition: {x: 550, y: -175.00005}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &824666913
@@ -114903,9 +114909,22 @@ MonoBehaviour:
   - {fileID: 1065471911}
   - {fileID: 1932348267}
   Weapons:
+  - {fileID: 0}
+  - {fileID: 6235598689512413334, guid: 95664c429fdcef74d83b805d7e9b7d99, type: 3}
+  - {fileID: 6235598689512413334, guid: 95664c429fdcef74d83b805d7e9b7d99, type: 3}
   - {fileID: 6235598689512413334, guid: 0a67cc08907bc4d1b838250c40a01556, type: 3}
-  - {fileID: 6235598689512413334, guid: 95664c429fdcef74d83b805d7e9b7d99, type: 3}
-  - {fileID: 6235598689512413334, guid: 95664c429fdcef74d83b805d7e9b7d99, type: 3}
+  Accessories:
+  - {fileID: 5844492718301990569, guid: b6d856f094455f44992fe550f0bb844b, type: 3}
+  - {fileID: 8826733878215552148, guid: dab07a92a2b6bfc4eb8dac6595338b35, type: 3}
+  - {fileID: 6678918167505807982, guid: 9054ae0421fa45b49afce81be2075614, type: 3}
+  - {fileID: 5216501996847970045, guid: c19231db2c9d2864eaa816f8259d7013, type: 3}
+  - {fileID: 0}
+  - {fileID: 6326203903812211790, guid: e1aa461abd100184493897461e8ff858, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 6678918167505807982, guid: 9054ae0421fa45b49afce81be2075614, type: 3}
+  - {fileID: 0}
   - {fileID: 0}
   CurrentTarget: {fileID: 0}
   TargetMark: {fileID: 212345629}
@@ -115201,7 +115220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1751148833
 RectTransform:
   m_ObjectHideFlags: 0

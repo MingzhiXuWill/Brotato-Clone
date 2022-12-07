@@ -62,6 +62,8 @@ public class GameController : MonoBehaviour
     public Image HealthBar;
 
     public GameObject PauseMenu;
+
+    public GameObject ShopMenu;
     #endregion
 
     [HideInInspector]
@@ -96,6 +98,7 @@ public class GameController : MonoBehaviour
 
         GameUIUpdate();
         LevelTimeUpdate();
+        LevelEndCheck();
 
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
@@ -168,6 +171,66 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void LevelEndCheck() 
+    {
+        if (LevelTimeRemains <= 0)
+        {
+            // Destory Enemy
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Enemy Enemy = enemy.GetComponent<Enemy>();
+
+                if (Enemy != null)
+                {
+                    if (Enemy.RangeAttack != null)
+                    {
+                        DestroyAllParticles(Enemy.RangeAttack.GetComponent<ParticleSystem>());    
+                    }
+                }
+
+                GameObject.Destroy(enemy);
+            }
+
+            // Destory Loot
+            GameObject[] coins = GameObject.FindGameObjectsWithTag("Coins");
+            foreach (GameObject coin in coins)
+            {
+                GameObject.Destroy(coin);
+            }
+
+            GoToShop();
+        }
+    }
+
+    public void DestroyAllParticles(ParticleSystem ps, bool stop = true)
+    {
+        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[ps.particleCount];
+        ps.GetParticles(particles);
+        int count = ps.particleCount;
+        for (int i = 0; i < count; i++)
+        {
+            particles[i].remainingLifetime = 0f;
+        }
+        ps.SetParticles(particles);
+
+        if (stop) ps.Stop();
+    }
+
+
+    public void GoToShop() 
+    {
+        ShopMenu.SetActive(true);
+        Time.timeScale = 0;
+
+        GameState = 3;
+    }
+
+    public void GoToLevel()
+    { 
+    
+    }
+
     public void PauseGame() 
     {
         PauseMenu.SetActive(true);
@@ -196,9 +259,5 @@ public class GameController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void testButton() {
-        Debug.Log("CLicked");
     }
 }
