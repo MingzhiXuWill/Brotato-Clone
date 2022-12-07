@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     public GameObject TargetMark;
     public GameObject FloatingTextMark;
 
+    public GameObject RangeAttack;
+
     Rigidbody2D Rigidbody;
 
     public EnemyHealthBar HealthBar;

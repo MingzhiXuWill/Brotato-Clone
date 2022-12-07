@@ -4958,7 +4958,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 60
   m_RenderMode: 5
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5121,6 +5121,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   TargetMark: {fileID: 8620332817987587532}
   FloatingTextMark: {fileID: 6743370319461892398}
+  RangeAttack: {fileID: 1485111461220122981}
   HealthBar: {fileID: 1288641470046837717}
   MoveSpeed: 3
   AttackDmg: 5

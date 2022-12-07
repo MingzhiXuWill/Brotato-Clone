@@ -141,6 +141,8 @@ MonoBehaviour:
   SlowTime: 0
   BulletsNumber: 1
   Range: 6
+  Rarity: 2
+  SellPrice: 88
   BulletScatter: 0
   CanFire: 0
   UseTimeCounter: 0
@@ -4968,7 +4970,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 60
   m_RenderMode: 5
   m_MeshDistribution: 0
   m_SortMode: 0

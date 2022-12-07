@@ -21,6 +21,9 @@ public class ParticleCollision : MonoBehaviour
     public int BulletsNumber;
     public float Range;
 
+    public int Rarity;
+    public int SellPrice;
+
     [HideInInspector]
     public float BulletScatter;
 
