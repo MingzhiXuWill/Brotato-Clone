@@ -148,4 +148,6 @@ public class Enemy : MonoBehaviour
     {
         CurrentHealth = MaxHealth;
     }
+
+    
 }
