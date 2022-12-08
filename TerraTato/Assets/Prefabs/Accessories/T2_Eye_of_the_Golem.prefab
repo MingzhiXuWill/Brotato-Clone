@@ -100,7 +100,7 @@ MonoBehaviour:
   Name: Eye of the Golem
   TooltipText: 
   Health: 0
-  Damage: 0.15
+  Damage: 10
   MoveSpeed: 0
   Rarity: 2
   SellPrice: 0

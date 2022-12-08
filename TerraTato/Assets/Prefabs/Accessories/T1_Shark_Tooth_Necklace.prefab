@@ -100,7 +100,7 @@ MonoBehaviour:
   Name: Shark Tooth Necklace
   TooltipText: 
   Health: 0
-  Damage: 0.05
+  Damage: 5
   MoveSpeed: 0
   Rarity: 1
   SellPrice: 0

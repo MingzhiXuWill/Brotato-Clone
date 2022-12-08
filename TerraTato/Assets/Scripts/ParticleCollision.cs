@@ -15,7 +15,7 @@ public class ParticleCollision : MonoBehaviour
     // Gun Stats
     public string Name;
     public string TooltipText;
-    public float Damage;
+    public int Damage;
     public float UseTime;
     public float SlowTime;
     public int BulletsNumber;

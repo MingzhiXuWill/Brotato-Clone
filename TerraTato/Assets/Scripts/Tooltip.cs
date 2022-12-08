@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public int PanelNumber;
+
+    [HideInInspector]
+    public ShopController ShopController;
+
     [HideInInspector]
     public Color[] RarityColors;
 
     [HideInInspector]
-
     public GameObject TooltipPanel;
     private bool hover;
 
@@ -22,7 +26,8 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         hover = false;
 
         TooltipPanel = GameObject.FindGameObjectWithTag("Tooltip");
-        RarityColors = GameObject.FindGameObjectWithTag("GameController").GetComponent<ShopController>().RarityColors;
+        ShopController = GameObject.FindGameObjectWithTag("GameController").GetComponent<ShopController>();
+        RarityColors = ShopController.RarityColors;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -30,11 +35,13 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!hover)
         {
             TooltipPanel.transform.position = transform.position;
-            TooltipPanel.SetActive(true);
 
             hover = true;
 
             TooltipUpdate(TooltipPanel.GetComponent<ItemPanel>(), ThisItem);
+
+            ShopController.CurrentSelectedItem = ThisItem;
+            ShopController.SelectedItemNumber = PanelNumber;
         }
     }
 
@@ -42,10 +49,12 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (hover)
         {
-            TooltipPanel.transform.position = new Vector3(0, 0, 0);
-            TooltipPanel.SetActive(false);
+            TooltipPanel.transform.position = new Vector2(50, 50);
 
             hover = false;
+
+            ShopController.CurrentSelectedItem = null;
+            ShopController.SelectedItemNumber = 0;
         }
     }
 

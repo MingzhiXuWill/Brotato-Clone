@@ -6,7 +6,7 @@ public class Accessory : MonoBehaviour
 {
     public string Name;
     public string TooltipText;
-    public float Health;
+    public int Health;
     public float Damage;
     public float MoveSpeed;
 

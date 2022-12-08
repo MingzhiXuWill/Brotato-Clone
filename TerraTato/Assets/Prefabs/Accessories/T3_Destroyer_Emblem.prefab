@@ -100,7 +100,7 @@ MonoBehaviour:
   Name: Destroyer Emblem
   TooltipText: 
   Health: 0
-  Damage: 0.1
+  Damage: 15
   MoveSpeed: 0
   Rarity: 3
   SellPrice: 0

@@ -173,10 +173,14 @@ MonoBehaviour:
   Player: {fileID: 0}
   TargetMark: {fileID: 5395848048548499433}
   FloatingTextMark: {fileID: 6977544372343358219}
+  RangeAttack: {fileID: 0}
   HealthBar: {fileID: 3216230555469715952}
+  BaseMoveSpeed: 4
   MoveSpeed: 3
+  BaseAttackDmg: 5
   AttackDmg: 5
   AttackDisMin: 0.75
+  BaseHealth: 65
   MaxHealth: 65
   CurrentHealth: 0
   GoldCoinCarried: 5
@@ -184,7 +188,6 @@ MonoBehaviour:
   HurtSound: {fileID: 8300000, guid: 99cf30d5b4fdc0846b0d65a83ba2c1e3, type: 3}
   KilledSound: {fileID: 8300000, guid: ee89e02bcedb58545ac527052221e58c, type: 3}
   GoldCoin: {fileID: 7459153014111917282, guid: 066b05dcab64ab64b9bc78d81ee1b77a, type: 3}
-  LifeFruit: {fileID: 1948111871152029644, guid: 0af974ab499fc334ba330553ba89a116, type: 3}
 --- !u!212 &1948111871152029647
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -30,28 +30,31 @@ public class GameController : MonoBehaviour
     public float BoundaryFix;
     #endregion
 
-    #region Level
+    #region Wave
     [HideInInspector]
     public bool Spawnable;
 
+    public float WavePercentage;
+
     public GameObject Player;
+    [HideInInspector]
     public PlayerController PlayerScript;
 
     [HideInInspector]
-    public int CurrentLevel;
+    public int CurrentWave;
 
-    public float LevelTimeMax;
+    public float WaveTimeMax;
     [HideInInspector]
-    public float LevelTimeRemains;
+    public float WaveTimeRemains;
     #endregion
 
     #region Text UI
-    public GameObject TextLevelUI;
+    public GameObject TextWaveUI;
     public GameObject TextTimeUI;
     public GameObject TextHealthBarUI;
     public GameObject TextCoinNumberUI;
     [HideInInspector]
-    public TextMeshProUGUI TextLevel;
+    public TextMeshProUGUI TextWave;
     [HideInInspector]
     public TextMeshProUGUI TextTime;
     [HideInInspector]
@@ -66,21 +69,25 @@ public class GameController : MonoBehaviour
     public GameObject ShopMenu;
     #endregion
 
+    ShopController ShopController;
+
     [HideInInspector]
     public static int GameState = 1; // 1 = Ingame // 2 = Paused // 3 = Shop
 
     void Start()
     {
+        ShopController = GetComponent<ShopController>();
+
         SpawnTimeCount = 0;
         CanSpawn = false;
 
         Spawnable = true;
 
-        CurrentLevel = 0;
+        CurrentWave = 0;
 
-        LevelTimeRemains = LevelTimeMax;
+        WaveTimeRemains = WaveTimeMax;
 
-        TextLevel = TextLevelUI.GetComponent<TextMeshProUGUI>();
+        TextWave = TextWaveUI.GetComponent<TextMeshProUGUI>();
         TextTime = TextTimeUI.GetComponent<TextMeshProUGUI>();
         TextHealthBar = TextHealthBarUI.GetComponent<TextMeshProUGUI>();
         TextCoinNumber = TextCoinNumberUI.GetComponent<TextMeshProUGUI>();
@@ -97,8 +104,8 @@ public class GameController : MonoBehaviour
         SpawnEnemy();
 
         GameUIUpdate();
-        LevelTimeUpdate();
-        LevelEndCheck();
+        WaveTimeUpdate();
+        WaveEndCheck();
 
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
@@ -115,14 +122,14 @@ public class GameController : MonoBehaviour
     }
 
     public void GameUIUpdate() {
-        TextLevel.text = "LEVEL " + (CurrentLevel + 1).ToString();
-        TextTime.text = ((int)LevelTimeRemains).ToString();
+        TextWave.text = "Wave " + (CurrentWave + 1).ToString();
+        TextTime.text = ((int)WaveTimeRemains).ToString();
 
         TextHealthBar.text = PlayerScript.CurrentHealth + " / " + PlayerScript.MaxHealth;
 
         TextCoinNumber.text = PlayerScript.TotalCoins + "";
 
-        HealthBar.fillAmount = PlayerScript.CurrentHealth / PlayerScript.MaxHealth;
+        HealthBar.fillAmount = (float)PlayerScript.CurrentHealth / (float)PlayerScript.MaxHealth;
     }
 
     public void SpawnEnemy() {
@@ -143,6 +150,8 @@ public class GameController : MonoBehaviour
                 GameObject thisSpawnerMark = Instantiate(SpawnerMark, new Vector2(xPos, yPos), Quaternion.identity);
 
                 thisSpawnerMark.GetComponent<SpawnerMark>().EnemyToSpawn = EnemyToSpawn;
+                thisSpawnerMark.GetComponent<SpawnerMark>().Wave = CurrentWave;
+                thisSpawnerMark.GetComponent<SpawnerMark>().WavePercentage = WavePercentage;
             }
 
             CanSpawn = false;
@@ -164,16 +173,16 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void LevelTimeUpdate() {
-        if (LevelTimeRemains > 0)
+    public void WaveTimeUpdate() {
+        if (WaveTimeRemains > 0)
         {
-            LevelTimeRemains -= Time.deltaTime;
+            WaveTimeRemains -= Time.deltaTime;
         }
     }
 
-    public void LevelEndCheck() 
+    public void WaveEndCheck() 
     {
-        if (LevelTimeRemains <= 0)
+        if (WaveTimeRemains <= 0)
         {
             // Destory Enemy
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -199,6 +208,13 @@ public class GameController : MonoBehaviour
                 GameObject.Destroy(coin);
             }
 
+            // Destory Marks
+            GameObject[] marks = GameObject.FindGameObjectsWithTag("SpawnerMark");
+            foreach (GameObject mark in marks)
+            {
+                GameObject.Destroy(mark);
+            }
+
             GoToShop();
         }
     }
@@ -217,18 +233,29 @@ public class GameController : MonoBehaviour
         if (stop) ps.Stop();
     }
 
-
     public void GoToShop() 
     {
-        ShopMenu.SetActive(true);
-        Time.timeScale = 0;
+        if (GameState == 1) {
+            ShopMenu.SetActive(true);
+            ShopController.ShopUpdate();
 
-        GameState = 3;
+            Time.timeScale = 0;
+
+            GameState = 3;
+        }
     }
 
-    public void GoToLevel()
-    { 
-    
+    public void GoToWave()
+    {
+        if (GameState == 3)
+        {
+            NextWave();
+            ShopMenu.SetActive(false);
+
+            Time.timeScale = 1;
+
+            GameState = 1;
+        }
     }
 
     public void PauseGame() 
@@ -259,5 +286,15 @@ public class GameController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void NextWave() 
+    { 
+        WaveTimeRemains = WaveTimeRemains = WaveTimeMax;
+
+        SpawnTimeCount = 0;
+        CanSpawn = false;
+
+        CurrentWave++;
     }
 }

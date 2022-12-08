@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [HideInInspector]
+    public int WeaponNumber = 0;
+    [HideInInspector]
+    public int AccessoryNumber = 0; 
+
     #region Weapon, Target
     public GameObject[] WeaponSlots;
 
@@ -35,11 +40,19 @@ public class PlayerController : MonoBehaviour
     #endregion Animation
 
     #region Player
+
+    public float BaseMoveSpeed;
+    [HideInInspector]
     public float MoveSpeed;
 
-    public float MaxHealth;
+    public int BaseHealth;
     [HideInInspector]
-    public float CurrentHealth;
+    public int MaxHealth;
+    [HideInInspector]
+    public int CurrentHealth;
+
+    [HideInInspector]
+    public float DamageMulti;
 
     public float InvincibilityDuration;
     [HideInInspector]
@@ -61,6 +74,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        SortAccessories(); // delete this after
+
+        StatsUpdate();
+
         // Weapons spawn
         if (Weapons[0] != null)
         {
@@ -90,6 +107,8 @@ public class PlayerController : MonoBehaviour
         // Invincibility
         Invincibility = false;
         InvincibilityCount = 0;
+
+        TotalCoins = 100;
     }
 
     void Update()
@@ -105,15 +124,42 @@ public class PlayerController : MonoBehaviour
         CurrentTarget = FindClosestEnemy();
     }
 
+    public void StatsUpdate() {
+        int tempHealth = 0;
+        float tempMS = 0;
+        float tempDamage = 0;
+        for (int i1 = 0; i1 < Accessories.Length; i1++)
+        {
+            if (Accessories[i1] != null) 
+            {
+                Accessory Accessory = Accessories[i1].GetComponent<Accessory>();
+
+                tempHealth += Accessory.Health;
+                tempMS += Accessory.MoveSpeed;
+                tempDamage += Accessory.Damage;
+            }
+            else 
+            {
+                MaxHealth = BaseHealth + tempHealth;
+                DamageMulti = 100 + tempDamage;
+                MoveSpeed = BaseMoveSpeed + tempMS;
+                break;
+            }
+        }
+    }
+
     public void SortWeapons() {
         List<GameObject> gameObjectList = new List<GameObject>(Weapons);
         gameObjectList.RemoveAll(x => x == null);  
         GameObject[] TempWeapons = gameObjectList.ToArray();
 
+        WeaponNumber = 0;
+
         for (int i1 = 0; i1 < Weapons.Length; i1++)
         {
             if (i1 < TempWeapons.Length)
             {
+                WeaponNumber ++;
                 Weapons[i1] = TempWeapons[i1];
             }
             else {
@@ -128,10 +174,13 @@ public class PlayerController : MonoBehaviour
         gameObjectList.RemoveAll(x => x == null);
         GameObject[] TempAccessories = gameObjectList.ToArray();
 
+        AccessoryNumber = 0;
+
         for (int i1 = 0; i1 < Accessories.Length; i1++)
         {
             if (i1 < TempAccessories.Length)
             {
+                AccessoryNumber ++;
                 Accessories[i1] = TempAccessories[i1];
             }
             else
@@ -241,7 +290,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float Damage) 
+    public void TakeDamage(int Damage) 
     {
         if (!Invincibility)
         {

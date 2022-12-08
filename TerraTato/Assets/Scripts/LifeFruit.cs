@@ -13,9 +13,9 @@ public class LifeFruit : MonoBehaviour
 
     // Enemy Stats
 
-    public float MaxHealth;
+    public int MaxHealth;
     [HideInInspector]
-    public float CurrentHealth;
+    public int CurrentHealth;
 
     // Sound
     public AudioClip KilledSound;
@@ -49,7 +49,7 @@ public class LifeFruit : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float Damage)
+    public void TakeDamage(int Damage)
     {
         // Create damage text
         FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, 1);

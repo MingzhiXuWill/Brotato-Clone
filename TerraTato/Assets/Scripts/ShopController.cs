@@ -26,6 +26,23 @@ public class ShopController : MonoBehaviour
     public TextMeshProUGUI ItemText;
     public TextMeshProUGUI CoinText;
 
+    public TextMeshProUGUI HealthText;
+    public TextMeshProUGUI DamageText;
+    public TextMeshProUGUI MoveSpeedText;
+
+    [HideInInspector]
+    public GameObject TooltipPanel;
+    [HideInInspector]
+    public GameObject CurrentSelectedItem = null;
+    [HideInInspector]
+    public int SelectedItemNumber = 0;
+
+    // Sound
+    public AudioClip RerollSound;
+    public AudioClip CoinSound;
+
+    bool FirstTimePlay = true;
+
     #region this one is actually hard to make. A double array in inspector
     [System.Serializable]
     public class SubClass
@@ -37,27 +54,154 @@ public class ShopController : MonoBehaviour
 
     void Start()
     {
+        TooltipPanel = GameObject.FindGameObjectWithTag("Tooltip");
+
         // Set up shop
         ShopItems = new GameObject[4];
         // Find the player object
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+        ChangeCoin(10);
+        Reroll();
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(1)) 
+        {
+            SellItem(CurrentSelectedItem, SelectedItemNumber);
+
+            TooltipPanel.transform.position = new Vector2(50, 50);
+        }     
+    }
+
+    public void SellItem(GameObject Item, int ItemNumber) {
+        if (Item.tag == "Weapon")
+        {
+            ChangeCoin(Player.Weapons[ItemNumber - 1].GetComponent<ParticleCollision>().SellPrice / 5);
+
+            Player.Weapons[ItemNumber - 1] = null;
+        }
+        else
+        {
+            ChangeCoin(Player.Accessories[ItemNumber - 1].GetComponent<Accessory>().SellPrice / 5);
+
+            Player.Accessories[ItemNumber - 1] = null;
+        }
+        SoundManager.sndman.PlaySound(CoinSound, 2f);
+        ShopUpdate();
+    }
+
+    public void BuyItem(int ItemNumber) 
+    {
+        GameObject Item = ShopItems[ItemNumber];
+
+        if (Item.tag == "Weapon")
+        {
+            ParticleCollision Weapon = Item.GetComponent<ParticleCollision>();
+            if (CoinCheck(Weapon.SellPrice) && EquipableCheck(Item)) 
+            {
+                SoundManager.sndman.PlaySound(CoinSound, 2f);
+                ShopItems[ItemNumber] = null;
+                EquipItem(Item);
+                ChangeCoin(-Weapon.SellPrice);
+            }
+        }
+        else
+        {
+            Accessory Accessory = Item.GetComponent<Accessory>();
+            if (CoinCheck(Accessory.SellPrice) && EquipableCheck(Item))
+            {
+                SoundManager.sndman.PlaySound(CoinSound, 2f);
+                ShopItems[ItemNumber] = null;
+                EquipItem(Item);
+                ChangeCoin(-Accessory.SellPrice);
+            }
+        }
+
+        ShopUpdate();
+    }
+
+    public void ChangeCoin(int Price) {
+        Player.TotalCoins += Price;
+    }
+
+    public void EquipItem(GameObject Item)
+    {
+        if (Item.tag == "Weapon")
+        {
+            Player.Weapons[Player.WeaponNumber] = Item;
+        }
+        else
+        {
+            Player.Accessories[Player.AccessoryNumber] = Item;
+        }
+    }
+
+    public bool CoinCheck(int Price) 
+    {
+        return (Player.TotalCoins >= Price);
+    }
+
+    public bool EquipableCheck(GameObject Item)
+    {
+        if (Item.tag == "Weapon")
+        {
+            if (Player.WeaponNumber < 4)
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+        else 
+        {
+            if (Player.AccessoryNumber < 12)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    public void Reroll()
+    {
+        if (CoinCheck(10)) {
+            for (int i1 = 0; i1 < ShopPanels.Length; i1++)
+            {
+                ShopItems[i1] = CreateRandomItem(CurrentTier);
+            }
+
+            ChangeCoin(-10);
+
+            if (FirstTimePlay) 
+            {
+                FirstTimePlay = false;
+            }
+            else 
+            {
+                SoundManager.sndman.PlaySound(RerollSound, 1f);    
+            }
+
+            ShopItemUpdate();
+            CoinTextUpdate();
+        }
+    }
+
+    public void ShopUpdate() {
         Player.SortWeapons();
         Player.SortAccessories();
-
-        Reroll();
 
         WeaponUpdate();
         ShopItemUpdate();
         ItemUpdate();
-    }
-
-    public void Reroll() {
-        for (int i1 = 0; i1 < ShopPanels.Length; i1++)
-        {
-            ShopItems[i1] = CreateRandomWeapon(CurrentTier);
-        }
-
-        ShopItemUpdate();
+        CoinTextUpdate();
+        StatsUpdate();
     }
 
     public void WeaponUpdate()
@@ -67,6 +211,7 @@ public class ShopController : MonoBehaviour
         {
             if (Player.Weapons[i1] != null)
             {
+                WeaponPanels[i1].SetActive(true);
                 count++;
                 Image Icon = WeaponPanels[i1].transform.GetChild(0).GetComponent<Image>();
 
@@ -90,6 +235,7 @@ public class ShopController : MonoBehaviour
         {
             if (Player.Accessories[i1] != null)
             {
+                ItemPanels[i1].SetActive(true);
                 count++;
                 Image Icon = ItemPanels[i1].transform.GetChild(0).GetComponent<Image>();
 
@@ -106,6 +252,12 @@ public class ShopController : MonoBehaviour
         ItemText.text = "Accessories(" + count + "/12)";
     }
 
+    public void StatsUpdate() {
+        HealthText.text = "Health: " + Player.MaxHealth;
+        DamageText.text = "Damage: " + Player.DamageMulti;
+        MoveSpeedText.text = "Move Speed: " + Player.MoveSpeed;
+    }
+
     public void ShopItemUpdate() 
     {
         for (int i1 = 0; i1 < ShopPanels.Length; i1++)
@@ -118,6 +270,7 @@ public class ShopController : MonoBehaviour
             }
             else if (Item.tag == "Weapon")
             {
+                ItemPanel.gameObject.SetActive(true);
                 ParticleCollision Weapon = Item.GetComponent<ParticleCollision>();
 
                 ItemPanel.Name.text = Weapon.Name;
@@ -139,6 +292,7 @@ public class ShopController : MonoBehaviour
             }
             else if (Item.tag == "Accessory")
             {
+                ItemPanel.gameObject.SetActive(true); 
                 Accessory Accessory = Item.GetComponent<Accessory>();
 
                 ItemPanel.Name.text = Accessory.Name;
@@ -172,7 +326,11 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    public GameObject CreateRandomWeapon(int TierNumber) 
+    public void CoinTextUpdate() {
+        CoinText.text = Player.TotalCoins.ToString();
+    }
+
+    public GameObject CreateRandomItem(int TierNumber) 
     {
         List<GameObject> ItemPoolTemp = new List<GameObject>();
 

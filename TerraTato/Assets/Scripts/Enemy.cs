@@ -18,15 +18,16 @@ public class Enemy : MonoBehaviour
     public EnemyHealthBar HealthBar;
 
     // Enemy Stats
+    
     public float MoveSpeed;
 
-    public float AttackDmg;
+    public int AttackDmg;
 
     public float AttackDisMin;
 
-    public float MaxHealth;
+    public int MaxHealth;
     [HideInInspector]
-    public float CurrentHealth;
+    public int CurrentHealth;
 
     public int GoldCoinCarried;
 
@@ -62,6 +63,14 @@ public class Enemy : MonoBehaviour
         Animator = GetComponent<Animator>();
 
         Animator.speed = AnimationSpeed;
+
+        SetRangeAttackDamage();
+    }
+
+    public void SetRangeAttackDamage() {
+        if (RangeAttack != null) {
+            RangeAttack.GetComponent<ParticleCollisionEnemy>().Damage = AttackDmg;
+        }    
     }
 
     private void Update()
@@ -101,7 +110,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float Damage)
+    public void TakeDamage(int Damage)
     {
         // Create damage text
         FloatingTextManager.ftman.CreateText(FloatingTextMark, (int)Damage, 1);

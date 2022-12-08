@@ -11,11 +11,22 @@ public class SpawnerMark : MonoBehaviour
     [HideInInspector]
     public float SpawnTimeCount;
 
+    [HideInInspector]
+    public float Wave;
+    [HideInInspector]
+    public float WavePercentage;
+
     void Update()
     {
         if (SpawnTimeCount > SpawnTime) 
         {
-            Instantiate(EnemyToSpawn, transform.position, Quaternion.identity);
+            Enemy enemy = Instantiate(EnemyToSpawn, transform.position, Quaternion.identity).GetComponent<Enemy>();
+
+            enemy.MaxHealth = (int)(enemy.MaxHealth * (Wave * WavePercentage + 1));
+            enemy.MoveSpeed = enemy.MoveSpeed * (Wave * WavePercentage / 2 + 1);
+            enemy.AttackDmg = (int)(enemy.AttackDmg * (Wave * WavePercentage + 1));
+
+            enemy.CurrentHealth = enemy.MaxHealth;
 
             Destroy(gameObject);
         }

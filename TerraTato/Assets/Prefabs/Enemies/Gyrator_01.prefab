@@ -5123,9 +5123,12 @@ MonoBehaviour:
   FloatingTextMark: {fileID: 6743370319461892398}
   RangeAttack: {fileID: 1485111461220122981}
   HealthBar: {fileID: 1288641470046837717}
+  BaseMoveSpeed: 4
   MoveSpeed: 3
+  BaseAttackDmg: 5
   AttackDmg: 5
   AttackDisMin: 0.75
+  BaseHealth: 65
   MaxHealth: 65
   CurrentHealth: 0
   GoldCoinCarried: 5

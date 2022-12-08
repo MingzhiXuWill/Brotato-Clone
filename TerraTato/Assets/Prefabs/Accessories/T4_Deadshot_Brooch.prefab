@@ -100,7 +100,7 @@ MonoBehaviour:
   Name: Deadshot Brooch
   TooltipText: 
   Health: 0
-  Damage: 0.2
+  Damage: 20
   MoveSpeed: 0
   Rarity: 4
   SellPrice: 0

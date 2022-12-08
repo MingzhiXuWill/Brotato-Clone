@@ -13,7 +13,8 @@ public class ParticleCollisionEnemy : MonoBehaviour
     public GameObject CurrentTarget;
 
     // Gun Stats
-    public float Damage;
+    [HideInInspector]
+    public int Damage;
     public float UseTime;
     public float Range;
 
@@ -27,6 +28,7 @@ public class ParticleCollisionEnemy : MonoBehaviour
 
     void Start()
     {
+        Damage = 0;
         ParticleSystem = GetComponent<ParticleSystem>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
 
