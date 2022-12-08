@@ -137,12 +137,12 @@ MonoBehaviour:
   Name: Red Ryder
   TooltipText: Don't shoot your eye out!
   Damage: 30
-  UseTime: 1.2
+  UseTime: 1.5
   SlowTime: 0
   BulletsNumber: 1
   Range: 20
   Rarity: 2
-  SellPrice: 55
+  SellPrice: 65
   BulletScatter: 0
   CanFire: 0
   UseTimeCounter: 0

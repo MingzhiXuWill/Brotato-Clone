@@ -83,14 +83,14 @@ public class ShopController : MonoBehaviour
     public void SellItem(GameObject Item, int ItemNumber) {
         if (Item.tag == "Weapon")
         {
-            ChangeCoin(Player.Weapons[ItemNumber - 1].GetComponent<ParticleCollision>().SellPrice / 5);
+            ChangeCoin((int)(Player.Weapons[ItemNumber - 1].GetComponent<ParticleCollision>().SellPrice / 1.5f));
 
             Player.SortWeapons();
             Player.Weapons[ItemNumber - 1] = null;
         }
         else
         {
-            ChangeCoin(Player.Accessories[ItemNumber - 1].GetComponent<Accessory>().SellPrice / 5);
+            ChangeCoin((int)(Player.Accessories[ItemNumber - 1].GetComponent<Accessory>().SellPrice / 1.5f));
 
             Player.Accessories[ItemNumber - 1] = null;
 
@@ -209,6 +209,7 @@ public class ShopController : MonoBehaviour
         Player.SortWeapons();
         Player.SortAccessories();
 
+        UpgradeUpdate();
         WeaponUpdate();
         ShopItemUpdate();
         ItemUpdate();
@@ -331,7 +332,7 @@ public class ShopController : MonoBehaviour
                 ItemPanel.Tooltip.text = Accessory.TooltipText;
                 ItemPanel.Tooltip.color = RarityColors[Accessory.Rarity - 1];
 
-                ItemPanel.Price.text = (Accessory.SellPrice / 5).ToString();
+                ItemPanel.Price.text = Accessory.SellPrice.ToString();
 
                 ItemPanel.Icon.GetComponent<Image>().sprite = Accessory.GetComponent<SpriteRenderer>().sprite;
             }
@@ -355,10 +356,13 @@ public class ShopController : MonoBehaviour
     public void Upgrade() 
     {
         if (CoinCheck(CurrentTier * TierMulti)) {
+            SoundManager.sndman.PlaySound(CoinSound, 2f);
+
             ChangeCoin(-CurrentTier * TierMulti);
 
             CurrentTier ++;
 
+            CoinTextUpdate();
             UpgradeUpdate();
             ShopLevelUpdate();
         } 

@@ -142,7 +142,7 @@ MonoBehaviour:
   BulletsNumber: 5
   Range: 6
   Rarity: 1
-  SellPrice: 25
+  SellPrice: 30
   BulletScatter: 0
   CanFire: 0
   UseTimeCounter: 0

@@ -180,7 +180,7 @@ MonoBehaviour:
   AttackDisMin: 0.75
   MaxHealth: 12
   CurrentHealth: 0
-  GoldCoinCarried: 2
+  GoldCoinCarried: 1
   AnimationSpeed: 0.5
   HurtSound: {fileID: 8300000, guid: 99cf30d5b4fdc0846b0d65a83ba2c1e3, type: 3}
   KilledSound: {fileID: 8300000, guid: ee89e02bcedb58545ac527052221e58c, type: 3}

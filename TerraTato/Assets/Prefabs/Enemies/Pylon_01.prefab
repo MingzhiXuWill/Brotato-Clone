@@ -222,7 +222,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -275,7 +275,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 35
+      scalar: 25
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5128,7 +5128,7 @@ MonoBehaviour:
   AttackDisMin: 0.75
   MaxHealth: 12
   CurrentHealth: 0
-  GoldCoinCarried: 2
+  GoldCoinCarried: 1
   AnimationSpeed: 0.5
   HurtSound: {fileID: 8300000, guid: 0d34ab47232243843aa99bd8a7e56a67, type: 3}
   KilledSound: {fileID: 8300000, guid: 7b967a8d12d29a54f883178369456162, type: 3}

@@ -137,7 +137,7 @@ MonoBehaviour:
   Name: Shroomer
   TooltipText: Shoots a powerful, high velocity bullet.
   Damage: 50
-  UseTime: 1.2
+  UseTime: 1.5
   SlowTime: 0
   BulletsNumber: 1
   Range: 20

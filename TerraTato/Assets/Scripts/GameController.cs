@@ -10,6 +10,11 @@ public class GameController : MonoBehaviour
     #region Spawner
     // Spawn Stats
     public float SpawnTimeMax;
+
+    public float SpawnTimeMod;
+
+    public float SpawnTimeMin;
+
     [HideInInspector]
     public float SpawnTimeCount;
     [HideInInspector]
@@ -301,6 +306,11 @@ public class GameController : MonoBehaviour
 
         SpawnTimeCount = 0;
         CanSpawn = false;
+
+        SpawnTimeMax = SpawnTimeMax - SpawnTimeMod * CurrentWave;
+        if (SpawnTimeMax < SpawnTimeMin) {
+            SpawnTimeMax = SpawnTimeMin;
+        }
 
         CurrentWave++;
 

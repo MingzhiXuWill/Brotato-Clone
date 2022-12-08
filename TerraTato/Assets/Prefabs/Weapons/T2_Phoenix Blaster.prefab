@@ -137,12 +137,12 @@ MonoBehaviour:
   Name: Phoenix Blaster
   TooltipText: It is also is modeled after the Colt M1911 pistol.
   Damage: 16
-  UseTime: 0.8
+  UseTime: 0.75
   SlowTime: 0
   BulletsNumber: 1
   Range: 12
   Rarity: 2
-  SellPrice: 55
+  SellPrice: 45
   BulletScatter: 0
   CanFire: 0
   UseTimeCounter: 0

@@ -136,13 +136,13 @@ MonoBehaviour:
   CurrentTarget: {fileID: 0}
   Name: Vortex Beater
   TooltipText: The catastrophic mixture of pew pew and boom boom.
-  Damage: 30
+  Damage: 25
   UseTime: 0.3
   SlowTime: 0
   BulletsNumber: 1
   Range: 14
   Rarity: 4
-  SellPrice: 130
+  SellPrice: 125
   BulletScatter: 0
   CanFire: 0
   UseTimeCounter: 0
