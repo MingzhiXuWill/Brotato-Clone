@@ -28,7 +28,6 @@ public class ParticleCollisionEnemy : MonoBehaviour
 
     void Start()
     {
-        Damage = 0;
         ParticleSystem = GetComponent<ParticleSystem>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
 

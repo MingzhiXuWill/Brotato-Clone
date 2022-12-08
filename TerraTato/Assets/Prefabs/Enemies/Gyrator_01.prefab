@@ -5123,15 +5123,12 @@ MonoBehaviour:
   FloatingTextMark: {fileID: 6743370319461892398}
   RangeAttack: {fileID: 1485111461220122981}
   HealthBar: {fileID: 1288641470046837717}
-  BaseMoveSpeed: 4
   MoveSpeed: 3
-  BaseAttackDmg: 5
-  AttackDmg: 5
+  AttackDmg: 4
   AttackDisMin: 0.75
-  BaseHealth: 65
-  MaxHealth: 65
+  MaxHealth: 12
   CurrentHealth: 0
-  GoldCoinCarried: 5
+  GoldCoinCarried: 2
   AnimationSpeed: 0.5
   HurtSound: {fileID: 8300000, guid: 0d34ab47232243843aa99bd8a7e56a67, type: 3}
   KilledSound: {fileID: 8300000, guid: 7b967a8d12d29a54f883178369456162, type: 3}

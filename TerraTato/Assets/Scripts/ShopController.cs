@@ -11,6 +11,8 @@ public class ShopController : MonoBehaviour
 
     public int CurrentTier;
 
+    public int TierMulti;
+
     public Color[] RarityColors;
 
     public GameObject[] ShopPanels;
@@ -29,6 +31,9 @@ public class ShopController : MonoBehaviour
     public TextMeshProUGUI HealthText;
     public TextMeshProUGUI DamageText;
     public TextMeshProUGUI MoveSpeedText;
+
+    public TextMeshProUGUI UpgradeText;
+    public TextMeshProUGUI ShopLevelText;
 
     [HideInInspector]
     public GameObject TooltipPanel;
@@ -80,6 +85,7 @@ public class ShopController : MonoBehaviour
         {
             ChangeCoin(Player.Weapons[ItemNumber - 1].GetComponent<ParticleCollision>().SellPrice / 5);
 
+            Player.SortWeapons();
             Player.Weapons[ItemNumber - 1] = null;
         }
         else
@@ -87,6 +93,9 @@ public class ShopController : MonoBehaviour
             ChangeCoin(Player.Accessories[ItemNumber - 1].GetComponent<Accessory>().SellPrice / 5);
 
             Player.Accessories[ItemNumber - 1] = null;
+
+            Player.SortAccessories();
+            Player.StatsUpdate();
         }
         SoundManager.sndman.PlaySound(CoinSound, 2f);
         ShopUpdate();
@@ -130,11 +139,14 @@ public class ShopController : MonoBehaviour
     {
         if (Item.tag == "Weapon")
         {
+            Player.SortWeapons();
             Player.Weapons[Player.WeaponNumber] = Item;
         }
         else
         {
             Player.Accessories[Player.AccessoryNumber] = Item;
+            Player.SortAccessories();
+            Player.StatsUpdate();
         }
     }
 
@@ -254,7 +266,7 @@ public class ShopController : MonoBehaviour
 
     public void StatsUpdate() {
         HealthText.text = "Health: " + Player.MaxHealth;
-        DamageText.text = "Damage: " + Player.DamageMulti;
+        DamageText.text = "Damage: " + Player.DamageMulti + "%";
         MoveSpeedText.text = "Move Speed: " + Player.MoveSpeed;
     }
 
@@ -328,6 +340,28 @@ public class ShopController : MonoBehaviour
 
     public void CoinTextUpdate() {
         CoinText.text = Player.TotalCoins.ToString();
+    }
+
+    public void UpgradeUpdate() 
+    {
+        UpgradeText.text = "Upgrade Shop (Cost " + (CurrentTier * TierMulti) + ")";
+    }
+
+    public void ShopLevelUpdate()
+    {
+        ShopLevelText.text = "Shop(Level " + CurrentTier + ")";
+    }
+
+    public void Upgrade() 
+    {
+        if (CoinCheck(CurrentTier * TierMulti)) {
+            ChangeCoin(-CurrentTier * TierMulti);
+
+            CurrentTier ++;
+
+            UpgradeUpdate();
+            ShopLevelUpdate();
+        } 
     }
 
     public GameObject CreateRandomItem(int TierNumber) 

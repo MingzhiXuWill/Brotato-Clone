@@ -103,4 +103,4 @@ MonoBehaviour:
   Damage: 5
   MoveSpeed: 0
   Rarity: 1
-  SellPrice: 0
+  SellPrice: 10

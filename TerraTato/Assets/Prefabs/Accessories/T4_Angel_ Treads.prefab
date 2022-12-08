@@ -101,6 +101,6 @@ MonoBehaviour:
   TooltipText: 
   Health: 0
   Damage: 0
-  MoveSpeed: 0.2
+  MoveSpeed: 0.35
   Rarity: 4
-  SellPrice: 0
+  SellPrice: 60

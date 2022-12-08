@@ -215,6 +215,13 @@ public class GameController : MonoBehaviour
                 GameObject.Destroy(mark);
             }
 
+            // Destory Marks
+            GameObject[] texts = GameObject.FindGameObjectsWithTag("FloatingText");
+            foreach (GameObject text in texts)
+            {
+                GameObject.Destroy(text);
+            }
+
             GoToShop();
         }
     }
@@ -296,5 +303,7 @@ public class GameController : MonoBehaviour
         CanSpawn = false;
 
         CurrentWave++;
+
+        Player.GetComponent<PlayerController>().WaveReset();
     }
 }

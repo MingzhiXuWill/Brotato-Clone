@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 60
-  m_Sprite: {fileID: 21300000, guid: ada1905083c78d4459eaf82c939e0bbb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef198e7e6172daa42a2feb33a3aff247, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6235598689512413320}
   - component: {fileID: 6235598689512413335}
   m_Layer: 10
-  m_Name: Midas Prime
+  m_Name: T3_Quad-Barrel_Shotgun
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,20 +134,20 @@ MonoBehaviour:
   ParticleSystem: {fileID: 0}
   Player: {fileID: 0}
   CurrentTarget: {fileID: 0}
-  Name: Midas Prime
-  TooltipText: Mankind is dead. Blood is fuel. Hell is full.
-  Damage: 35
+  Name: Quad-Barrel_Shotgun
+  TooltipText: When 2 or 3 just doesn't cut it!
+  Damage: 20
   UseTime: 1
   SlowTime: 0
-  BulletsNumber: 1
-  Range: 18
+  BulletsNumber: 4
+  Range: 6
   Rarity: 3
-  SellPrice: 156
+  SellPrice: 80
   BulletScatter: 0
   CanFire: 0
   UseTimeCounter: 0
   GunSpriteSize: 1.5
-  FireSound: {fileID: 8300000, guid: 618181028309c1c40a3bb734ecce9d87, type: 3}
+  FireSound: {fileID: 8300000, guid: 3c59df9dbf5a3b04e84c55378ded8f2e, type: 3}
   Sprite: {fileID: 6235598688313355310}
   BulletNeedToFire: 0
   FiredThisFrame: 0
@@ -287,7 +287,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 400
+      scalar: 200
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -923,7 +923,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 1
+      value: 10
       mode: 0
       spread: 0
       speed:

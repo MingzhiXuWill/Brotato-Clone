@@ -12,6 +12,7 @@ TagManager:
   - Tooltip
   - Accessory
   - SpawnerMark
+  - FloatingText
   layers:
   - Default
   - TransparentFX

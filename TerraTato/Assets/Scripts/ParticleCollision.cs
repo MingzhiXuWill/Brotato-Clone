@@ -46,10 +46,14 @@ public class ParticleCollision : MonoBehaviour
     [HideInInspector]
     public bool FiredThisFrame;
 
+    PlayerController playerController;
+
     void Start()
     {
         ParticleSystem = GetComponent<ParticleSystem>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        playerController = Player.GetComponent<PlayerController>();
 
         UseTimeCounter = 0;
         CanFire = false;
@@ -70,7 +74,7 @@ public class ParticleCollision : MonoBehaviour
 
             if (Enemy != null)
             {
-                Enemy.TakeDamage(Damage);
+                Enemy.TakeDamage((int)(Damage * playerController.DamageMulti / 100));
 
                 // Apply Slow
                 if (SlowTime != 0)
@@ -80,7 +84,7 @@ public class ParticleCollision : MonoBehaviour
             }
             else 
             {
-                LifeFruit.TakeDamage(Damage);
+                LifeFruit.TakeDamage((int)(Damage * playerController.DamageMulti / 100));
             }
         }
     }

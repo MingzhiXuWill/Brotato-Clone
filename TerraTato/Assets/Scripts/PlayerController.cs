@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         SortAccessories(); // delete this after
+        SortWeapons();
 
         StatsUpdate();
 
@@ -100,15 +101,12 @@ public class PlayerController : MonoBehaviour
         SpriteRenderer = GetComponent<SpriteRenderer>();
         Animator = GetComponent<Animator>();
 
-
         // Health
         CurrentHealth = MaxHealth;
 
         // Invincibility
         Invincibility = false;
         InvincibilityCount = 0;
-
-        TotalCoins = 100;
     }
 
     void Update()
@@ -122,6 +120,29 @@ public class PlayerController : MonoBehaviour
         CheckDeath();
 
         CurrentTarget = FindClosestEnemy();
+    }
+
+    public void WaveReset()
+    {
+        transform.position = new Vector2(0, 0);
+        CurrentHealth = MaxHealth;
+
+        if (Weapons[0] != null)
+        {
+            SpawnWeapon(WeaponSlots[0], Weapons[0], true);
+        }
+        if (Weapons[1] != null)
+        {
+            SpawnWeapon(WeaponSlots[1], Weapons[1], true);
+        }
+        if (Weapons[2] != null)
+        {
+            SpawnWeapon(WeaponSlots[2], Weapons[2], true);
+        }
+        if (Weapons[3] != null)
+        {
+            SpawnWeapon(WeaponSlots[3], Weapons[3], true);
+        }
     }
 
     public void StatsUpdate() {
@@ -286,7 +307,7 @@ public class PlayerController : MonoBehaviour
     {
         if (CurrentHealth <= 0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("titleScene");
         }
     }
 
@@ -348,9 +369,5 @@ public class PlayerController : MonoBehaviour
                 InvincibilityCount = 0;
             }
         }
-    }
-
-    public void ResetPos() {
-        transform.position = new Vector3(0, 0, 0);
     }
 }

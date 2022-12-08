@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6235598689512413320}
   - component: {fileID: 6235598689512413335}
   m_Layer: 10
-  m_Name: Boomstick
+  m_Name: T1_Boomstick
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,8 +135,8 @@ MonoBehaviour:
   Player: {fileID: 0}
   CurrentTarget: {fileID: 0}
   Name: Boomstick
-  TooltipText: Boomstick...
-  Damage: 7
+  TooltipText: Fires a spread of bullets.
+  Damage: 8
   UseTime: 1
   SlowTime: 0
   BulletsNumber: 5

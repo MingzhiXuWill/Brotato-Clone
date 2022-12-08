@@ -26,6 +26,10 @@ public class SpawnerMark : MonoBehaviour
             enemy.MoveSpeed = enemy.MoveSpeed * (Wave * WavePercentage / 2 + 1);
             enemy.AttackDmg = (int)(enemy.AttackDmg * (Wave * WavePercentage + 1));
 
+            if (enemy.RangeAttack != null) {
+                enemy.RangeAttack.GetComponent<ParticleCollisionEnemy>().Damage = enemy.AttackDmg;
+            }
+
             enemy.CurrentHealth = enemy.MaxHealth;
 
             Destroy(gameObject);
