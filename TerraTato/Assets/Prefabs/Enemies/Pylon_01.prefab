@@ -134,11 +134,12 @@ MonoBehaviour:
   Player: {fileID: 0}
   CurrentTarget: {fileID: 0}
   Damage: 3
-  UseTime: 2
-  Range: 15
+  UseTime: 3
+  Range: 12
   CanFire: 0
   UseTimeCounter: 0
   FireSound: {fileID: 8300000, guid: bf94f7a86217a1c4da61d6b57f1a00b9, type: 3}
+  Dead: 0
 --- !u!198 &2188508659315678121
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5124,7 +5125,7 @@ MonoBehaviour:
   RangeAttack: {fileID: 1485111461220122981}
   HealthBar: {fileID: 1288641470046837717}
   MoveSpeed: 3
-  AttackDmg: 4
+  AttackDmg: 2
   AttackDisMin: 0.75
   MaxHealth: 12
   CurrentHealth: 0

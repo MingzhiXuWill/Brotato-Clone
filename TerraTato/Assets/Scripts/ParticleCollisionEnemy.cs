@@ -26,8 +26,12 @@ public class ParticleCollisionEnemy : MonoBehaviour
     // Sound
     public AudioClip FireSound;
 
+    [HideInInspector]
+    public bool Dead;
+
     void Start()
     {
+        Dead = false;
         ParticleSystem = GetComponent<ParticleSystem>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -65,9 +69,8 @@ public class ParticleCollisionEnemy : MonoBehaviour
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(-DisY, -DisX) * Mathf.Rad2Deg));
 
                 // Fire
-                if (CanFire)
+                if (CanFire & !Dead)
                 {
-                    Debug.Log("Shot");
                     ParticleSystem.Emit(1);
                     CanFire = false;
                     SoundManager.sndman.PlaySound(FireSound, 1f);

@@ -250,6 +250,8 @@ public class GameController : MonoBehaviour
         if (GameState == 1) {
             ShopMenu.SetActive(true);
             ShopController.ShopUpdate();
+            ShopController.ChangeCoin(10);
+            ShopController.Reroll();
 
             Time.timeScale = 0;
 

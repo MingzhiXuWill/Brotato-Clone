@@ -107,6 +107,11 @@ public class Enemy : MonoBehaviour
             GameObject Coin = Instantiate(GoldCoin, transform.position, transform.rotation);
 
             Coin.GetComponent<GoldCoin>().CoinValue = GoldCoinCarried;
+
+            if (RangeAttack != null) {
+                RangeAttack.transform.parent = null;
+                Destroy(RangeAttack, 3.0f);
+            }
         }
     }
 

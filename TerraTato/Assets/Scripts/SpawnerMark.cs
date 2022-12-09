@@ -23,8 +23,17 @@ public class SpawnerMark : MonoBehaviour
             Enemy enemy = Instantiate(EnemyToSpawn, transform.position, Quaternion.identity).GetComponent<Enemy>();
 
             enemy.MaxHealth = (int)(enemy.MaxHealth * (Wave * WavePercentage + 1));
-            enemy.MoveSpeed = enemy.MoveSpeed * (Wave * WavePercentage / 2 + 1);
-            enemy.AttackDmg = (int)(enemy.AttackDmg * (Wave * WavePercentage + 1));
+
+            float tempMS = enemy.MoveSpeed * (Wave * WavePercentage / 4 + 1);
+            if (tempMS <= tempMS + 1)
+            {
+                enemy.MoveSpeed = tempMS;
+            }
+
+            int tempDamage = (int)(enemy.AttackDmg * (Wave * WavePercentage / 3 + 1));
+            if (tempDamage <= enemy.AttackDmg * 3) {
+                enemy.AttackDmg = tempDamage;
+            }
 
             if (enemy.RangeAttack != null) {
                 enemy.RangeAttack.GetComponent<ParticleCollisionEnemy>().Damage = enemy.AttackDmg;

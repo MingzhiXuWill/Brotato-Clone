@@ -13,6 +13,8 @@ public class ShopController : MonoBehaviour
 
     public int TierMulti;
 
+    public int MaxTier;
+
     public Color[] RarityColors;
 
     public GameObject[] ShopPanels;
@@ -346,16 +348,31 @@ public class ShopController : MonoBehaviour
     public void UpgradeUpdate() 
     {
         UpgradeText.text = "Upgrade Shop (Cost " + (CurrentTier * TierMulti) + ")";
+        if (CurrentTier < MaxTier)
+        {
+            UpgradeText.text = "Upgrade Shop (Cost " + (CurrentTier * TierMulti) + ")";
+        }
+        else
+        {
+            UpgradeText.text = "Maxed!";
+        }
     }
 
     public void ShopLevelUpdate()
     {
-        ShopLevelText.text = "Shop(Level " + CurrentTier + ")";
+        if (CurrentTier < MaxTier)
+        {
+            ShopLevelText.text = "Shop(Level " + CurrentTier + ")";
+        }
+        else {
+            ShopLevelText.text = "Shop(Max Level)";
+        }
+        
     }
 
     public void Upgrade() 
     {
-        if (CoinCheck(CurrentTier * TierMulti)) {
+        if (CoinCheck(CurrentTier * TierMulti) && CurrentTier < MaxTier) {
             SoundManager.sndman.PlaySound(CoinSound, 2f);
 
             ChangeCoin(-CurrentTier * TierMulti);

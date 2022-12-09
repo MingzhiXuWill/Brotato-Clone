@@ -80,22 +80,7 @@ public class PlayerController : MonoBehaviour
         StatsUpdate();
 
         // Weapons spawn
-        if (Weapons[0] != null)
-        {
-            SpawnWeapon(WeaponSlots[0], Weapons[0], true);
-        }
-        if (Weapons[1] != null)
-        {
-            SpawnWeapon(WeaponSlots[1], Weapons[1], true);
-        }
-        if (Weapons[2] != null)
-        {
-            SpawnWeapon(WeaponSlots[2], Weapons[2], true);
-        }
-        if (Weapons[3] != null)
-        {
-            SpawnWeapon(WeaponSlots[3], Weapons[3], true);
-        }
+        SpawnWeapons();
 
         // Animation
         SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -127,22 +112,7 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector2(0, 0);
         CurrentHealth = MaxHealth;
 
-        if (Weapons[0] != null)
-        {
-            SpawnWeapon(WeaponSlots[0], Weapons[0], true);
-        }
-        if (Weapons[1] != null)
-        {
-            SpawnWeapon(WeaponSlots[1], Weapons[1], true);
-        }
-        if (Weapons[2] != null)
-        {
-            SpawnWeapon(WeaponSlots[2], Weapons[2], true);
-        }
-        if (Weapons[3] != null)
-        {
-            SpawnWeapon(WeaponSlots[3], Weapons[3], true);
-        }
+        SpawnWeapons();
     }
 
     public void StatsUpdate() {
@@ -216,18 +186,15 @@ public class PlayerController : MonoBehaviour
         SoundManager.sndman.PlaySound(FootStepSound, 1f);
     }
 
-    public void SpawnWeapon(GameObject WeaponSlot, GameObject Weapon, bool Replace) {
-        if (WeaponSlot.transform.childCount == 0)
-        {
-            Instantiate(Weapon, WeaponSlot.transform.position, WeaponSlot.transform.rotation, WeaponSlot.transform);
-        }
-        if (WeaponSlot.transform.childCount >= 0 && Replace)
-        {
-            foreach (Transform child in WeaponSlot.transform)
+    public void SpawnWeapons() {
+        for (int i1 = 0; i1 < Weapons.Length; i1 ++) {
+            foreach (Transform child in (WeaponSlots[i1].transform))
             {
                 GameObject.Destroy(child.gameObject);
             }
-            Instantiate(Weapon, WeaponSlot.transform.position, WeaponSlot.transform.rotation, WeaponSlot.transform);
+            if (Weapons[i1] != null) {
+                Instantiate(Weapons[i1], WeaponSlots[i1].transform.position, WeaponSlots[i1].transform.rotation, WeaponSlots[i1].transform);
+            }
         }
     }
 
@@ -332,7 +299,7 @@ public class PlayerController : MonoBehaviour
 
     public void HealthDamage() 
     {
-        int HealNumber = (int)(MaxHealth / 100 * HealthAmount);
+        int HealNumber = (int)((float)MaxHealth / 100 * HealthAmount);
 
         // Health damage
         CurrentHealth += HealNumber;
