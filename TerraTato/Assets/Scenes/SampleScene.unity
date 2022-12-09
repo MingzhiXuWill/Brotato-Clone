@@ -5213,7 +5213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Right click to sell items
+  m_text: Right click to sell items(50% of its value)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1745bb88a5bef4fa6b97df2d8a6d5a2c, type: 2}
   m_sharedMaterial: {fileID: -8034100058009699079, guid: 1745bb88a5bef4fa6b97df2d8a6d5a2c, type: 2}

@@ -77,7 +77,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             ItemPanel.Tooltip.text = Weapon.TooltipText;
             ItemPanel.Tooltip.color = RarityColors[Weapon.Rarity - 1];
 
-            ItemPanel.Price.text = (Weapon.SellPrice / 1.5).ToString();
+            ItemPanel.Price.text = (Weapon.SellPrice / 2).ToString();
 
             ItemPanel.Icon.GetComponent<Image>().sprite = Weapon.Sprite.GetComponent<SpriteRenderer>().sprite;
         }
@@ -108,7 +108,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             ItemPanel.Tooltip.text = Accessory.TooltipText;
             ItemPanel.Tooltip.color = RarityColors[Accessory.Rarity - 1];
 
-            ItemPanel.Price.text = (Accessory.SellPrice / 1.5).ToString();
+            ItemPanel.Price.text = (Accessory.SellPrice / 2).ToString();
 
             ItemPanel.Icon.GetComponent<Image>().sprite = Accessory.GetComponent<SpriteRenderer>().sprite;
         }

@@ -85,14 +85,14 @@ public class ShopController : MonoBehaviour
     public void SellItem(GameObject Item, int ItemNumber) {
         if (Item.tag == "Weapon")
         {
-            ChangeCoin((int)(Player.Weapons[ItemNumber - 1].GetComponent<ParticleCollision>().SellPrice / 1.5f));
+            ChangeCoin((int)(Player.Weapons[ItemNumber - 1].GetComponent<ParticleCollision>().SellPrice / 2f));
 
             Player.SortWeapons();
             Player.Weapons[ItemNumber - 1] = null;
         }
         else
         {
-            ChangeCoin((int)(Player.Accessories[ItemNumber - 1].GetComponent<Accessory>().SellPrice / 1.5f));
+            ChangeCoin((int)(Player.Accessories[ItemNumber - 1].GetComponent<Accessory>().SellPrice / 2f));
 
             Player.Accessories[ItemNumber - 1] = null;
 
