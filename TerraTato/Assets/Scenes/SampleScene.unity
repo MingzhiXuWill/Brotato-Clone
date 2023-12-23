@@ -3875,7 +3875,7 @@ MonoBehaviour:
   yBoundary: 15
   BoundaryFix: 2
   Spawnable: 0
-  WavePercentage: 0.15
+  WavePercentage: 0.25
   Player: {fileID: 1706800639}
   PlayerScript: {fileID: 0}
   CurrentWave: 0
@@ -4658,10 +4658,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.121875
-    y: -0.010185185
-    width: 0.5
-    height: 0.5
+    x: 0.17130308
+    y: -0.014322917
+    width: 0.70278186
+    height: 0.703125
   near clip plane: 0.1
   far clip plane: 1000
   field of view: 40
